@@ -1,0 +1,135 @@
+.top__bar {
+    height: 65px;
+    background: #366ac3;
+    display: flex;
+    justify-content: space-between;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+    width: 250px;
+}
+
+
+.drop__menu {
+    margin-right: 12px;
+    margin-top: 8.5px;
+    margin-bottom: 8.5px;
+}
+
+.label__block {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.label__sidebar {
+    font-size: 18px;
+    font-style: normal;
+    font-family: "Roboto","Helvetica","Arial", sans-serif;
+}
+
+.path__block {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.notification {
+    margin-right: 12px;
+    margin-top: 8.5px;
+    margin-bottom: 8.5px;
+}
+
+.popover__content {
+    display: flex;
+    width: 460px;
+    height: 722px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*padding-bottom: 10px;*/
+    flex-direction: column;
+}
+
+.loading__popover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 700px;
+}
+
+.empty__popover__label {
+    font-size: 24px;
+    font-style: normal;
+    font-family: "Roboto","Helvetica","Arial", sans-serif;
+    color: #366ac3;
+}
+
+.notification__item {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    background-color: rgba(251, 251, 252, 1);
+    border: 1px solid rgba(145, 158, 171, 0.25);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification__label {
+    margin-left: 10px;
+    display: flex;
+    justify-content: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    color: #366ac3
+}
+
+.notification__info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #919EAB3F;
+    background-color: rgb(246, 245, 245);
+    /*border: 1px solid rgba(54, 106, 195, 100)*/
+}
+
+.notification__action {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.notification__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    color: #366ac3
+}
+
+.notification__row__left {
+    width: 100px;
+}
+
+.notification__row__right {
+    width: 250px;
+}
+
+.popover__label {
+    margin-top: 10px;
+    justify-content: center;
+    display: flex;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    color: #366ac3
+}
