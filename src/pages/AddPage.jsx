@@ -2,7 +2,7 @@ import React from 'react';
 
 function AddPage(props) {
     return (
-        <div>h1</div>
+        <div className="">h1</div>
     );
 }
 

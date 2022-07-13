@@ -1,11 +1,11 @@
-import './App.css';
-import Sidebar from "./components/bars/Sidebar";
+import './css/App.css';
+import Topbar from "./components/Topbar";
 import NavigationRoutes from "./navigation/NavigationRoutes";
 
 function App() {
   return (
       <div className="cont">
-        <Sidebar/>
+        <Topbar/>
         <div className="active__screen">
           <div className="plug"/>
           <div className="dashboard">

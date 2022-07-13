@@ -1,0 +1,74 @@
+.background {
+    background-color: rgba(251, 251, 252, 1);
+    border: 1px solid rgba(145, 158, 171, 0.25);
+    border-radius: 12px;
+}
+
+.main__container__info {
+    padding: 10px 20px;
+    margin: 20px 300px;
+    height: calc(100vh - 125px)
+}
+
+.header__accordion__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header__accordion__label {
+    margin-left: 15px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+}
+
+.header__accordion__block {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #366ac3;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.body__accordion__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body__accordion__info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.body__accordion__button {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.header__accordion__button {
+    margin-right: 20px;
+}
+
+.body__accordion__row_info {
+    display: flex;
+    margin-bottom: 7px;
+    justify-content: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+}
+
+.body__accordion__row__left {
+    width: 200px;
+}
+.body__accordion__row__right {
+    cursor: pointer;
+    width: 250px;
+}
+
+

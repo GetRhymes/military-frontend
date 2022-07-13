@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.active__screen {
+    flex: 1;
+}
+
+.dashboard {
+    height: calc(100vh - 85px);
+}
+
+.plug {
+    height: 65px;
+    display: flex;
+}
+
+.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
+    background: #366ac3;
+}
+
+.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper {
+    background: #366ac3;
+}
+
+.loading__screen {
+    height: calc(100vh - 145px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clean__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 20px);
+}
+
+.clean__block__text {
+    font-family: "Roboto","Helvetica","Arial", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    color: #366ac3;
+}
