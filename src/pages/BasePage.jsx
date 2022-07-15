@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import ListWarCamp from "../components/InfoWarCamp/ListWarCamp";
+import ListWarCamp from "../components/infoWarCamp/ListWarCamp";
 import dataWarCampJS from "../data/dataWarCamp";
 
-function InfoPage(props) {
+function BasePage() {
 
     const [dataWarCamp, setDataWarCamp] = useState([])
 
@@ -17,4 +17,4 @@ function InfoPage(props) {
     );
 }
 
-export default InfoPage;
+export default BasePage;

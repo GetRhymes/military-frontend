@@ -50,6 +50,13 @@
     margin-right: 10px;
 }
 
+.body__accordion__button__oi {
+    display: flex;
+    align-items: start;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
 .header__accordion__button {
     margin-right: 20px;
 }
@@ -64,11 +71,19 @@
 }
 
 .body__accordion__row__left {
-    width: 200px;
+    width: 170px;
 }
+
+.accordion__row__left__oi {
+    width: 270px;
+}
+
 .body__accordion__row__right {
-    cursor: pointer;
-    width: 250px;
+    width: 270px;
+}
+
+.accordion__row__right__oi {
+    width: 200px;
 }
 
 

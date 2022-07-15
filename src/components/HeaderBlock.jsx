@@ -1,9 +1,9 @@
 import React from 'react';
 import {Box, InputAdornment, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import ButtonCreate from "../ButtonCreate";
+import ButtonCreate from "./ButtonCreate";
 
-function HeaderWarCampBlock({setActive}) {
+function HeaderBlock({setActive, label}) {
     const containerStyle = {
         marginTop: "20px",
         display: 'flex',
@@ -23,7 +23,7 @@ function HeaderWarCampBlock({setActive}) {
             <TextField
                 // onChange={handleSearchValue}
                 variant="standard"
-                label="Введите название части"
+                label={label}
                 sx={{width: "300px"}}
                 InputProps={{startAdornment: (adornment)}}
             />
@@ -32,4 +32,4 @@ function HeaderWarCampBlock({setActive}) {
     );
 }
 
-export default HeaderWarCampBlock;
+export default HeaderBlock;

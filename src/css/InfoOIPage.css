@@ -1,0 +1,38 @@
+.background__card {
+    padding: 20px;
+    border: 1px solid rgba(145, 158, 171, 0.12);
+    background-color: rgba(251, 251, 252, 1);
+    margin-right: 20px;
+    border-radius: 12px;
+}
+
+.header__card {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 300px;
+    margin-right: 300px;
+    flex-direction: column;
+}
+
+.header__label {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+    font-family: "Roboto","Helvetica","Arial", sans-serif;
+    font-style: normal;
+    color: #366ac3;
+}
+
+.font__header {
+    font-size: 24px;
+}
+
+.font__body {
+    font-size: 20px;
+}
+
+.cert__body {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import '../../css/InfoPage.css';
 import BodyWarCampBlock from "./BodyWarCampBlock";
-import HeaderWarCampBlock from "./HeaderWarCampBlock";
 import {Box} from "@mui/material";
 import PopupCreateWarCamp from "../popup/PopupCreateWarCamp";
 import PopupRemove from "../popup/PopupRemove";
+import HeaderBlock from "../HeaderBlock";
 
 function ListWarCamp({dataWarCamp}) {
 
@@ -16,7 +16,7 @@ function ListWarCamp({dataWarCamp}) {
 
     return (
         <Box height="calc(100% - 10px)" overflow="auto" sx={{marginTop: "10px"}}>
-            <HeaderWarCampBlock setActive={setActive}/>
+            <HeaderBlock setActive={setActive} label="Введите название части"/>
             <BodyWarCampBlock dataWarCamp={dataWarCamp} setActive={setActiveRemove} setName={setName}/>
             <PopupCreateWarCamp active={active} setActive={setActive}/>
             <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name}/>
