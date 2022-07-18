@@ -25,6 +25,20 @@
     width: 450px;
 }
 
+.popup__cert {
+    border-radius: 12px;
+    background-color: white;
+    height: 425px;
+    width: 470px;
+}
+
+.popup__oi__content {
+    border-radius: 12px;
+    background-color: white;
+    height: 195px;
+    width: 450px;
+}
+
 .popup__remove {
     border-radius: 12px;
     background-color: white;

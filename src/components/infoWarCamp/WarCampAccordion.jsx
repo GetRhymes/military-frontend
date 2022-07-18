@@ -7,7 +7,7 @@ import TopicIcon from '@mui/icons-material/Topic';
 import {useNavigate} from "react-router-dom";
 import {BaseContext} from "../../context/context";
 
-function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, setActive, setName}) {
+function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, setActive, setName, setActiveCreate, setBaseId}) {
     return (
         <Accordion
             inputprops={{position: "initial"}}
@@ -16,11 +16,14 @@ function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, 
         >
             <WarCampAccordionSummary nameWarCamp={nameWarCamp} baseId={baseId}/>
             <WarCampAccordionDetails
+                id={baseId}
                 nameWarCamp={nameWarCamp}
                 numberWarCamp={numberWarCamp}
                 locationWarCamp={locationWarCamp}
                 setActive={setActive}
                 setName={setName}
+                setActiveCreate={setActiveCreate}
+                setBaseId={setBaseId}
             />
         </Accordion>
     );
@@ -58,7 +61,9 @@ function WarCampAccordionSummary({nameWarCamp, baseId}) {
     );
 }
 
-function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, setActive, setName}) {
+function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, setActive, setName, setActiveCreate, id, setBaseId}) {
+
+
 
     return (
         <AccordionDetails>
@@ -69,7 +74,10 @@ function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, s
                 </div>
                 <div className="body__accordion__button">
                     <ButtonGroup sx={{boxShadow: "unset", borderRadius: "12px"}} >
-                        <Button>
+                        <Button onClick={() => {
+                            setBaseId(id)
+                            setActiveCreate(true)
+                        }}>
                             <EditIcon/>
                         </Button>
                         <Button onClick={ () => {

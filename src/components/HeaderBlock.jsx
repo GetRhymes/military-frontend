@@ -3,7 +3,7 @@ import {Box, InputAdornment, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ButtonCreate from "./ButtonCreate";
 
-function HeaderBlock({setActive, label}) {
+function HeaderBlock({setActive, label, handleSearchValue}) {
     const containerStyle = {
         marginTop: "20px",
         display: 'flex',
@@ -21,7 +21,7 @@ function HeaderBlock({setActive, label}) {
     return (
         <Box sx={containerStyle}>
             <TextField
-                // onChange={handleSearchValue}
+                onChange={handleSearchValue}
                 variant="standard"
                 label={label}
                 sx={{width: "300px"}}

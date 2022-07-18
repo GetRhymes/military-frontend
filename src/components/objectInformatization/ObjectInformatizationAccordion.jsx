@@ -1,11 +1,9 @@
 import React, {useContext} from 'react';
 import {Accordion, AccordionDetails, AccordionSummary, Button, ButtonGroup, Divider, IconButton} from "@mui/material";
 import FilterRowInfo from "../infoWarCamp/FilterRow";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {useNavigate} from "react-router-dom";
-import {OIContext} from "../../context/context";
 
 function ObjectInformatizationAccordion(
     {
@@ -17,7 +15,8 @@ function ObjectInformatizationAccordion(
         si,
         scr,
         setActive,
-        setName
+        setName,
+        setOiId
     }
 ) {
     return (
@@ -26,7 +25,7 @@ function ObjectInformatizationAccordion(
             sx={{marginBottom: "10px"}}
             disableGutters={true}
         >
-            <ObjectInformatizationAccordionSummary id={id} nameObjectInformatization={nameObjectInformatization}/>
+            <ObjectInformatizationAccordionSummary id={id} nameObjectInformatization={nameObjectInformatization} setOiId={setOiId}/>
             <ObjectInformatizationAccordionDetails
                 nameObjectInformatization={nameObjectInformatization}
                 dateUpdate={dateUpdate}
@@ -41,9 +40,7 @@ function ObjectInformatizationAccordion(
     );
 }
 
-function ObjectInformatizationAccordionSummary({id, nameObjectInformatization}) {
-
-    const {setOiId} = useContext(OIContext)
+function ObjectInformatizationAccordionSummary({id, nameObjectInformatization, setOiId}) {
 
     let navigate = useNavigate();
 
@@ -61,6 +58,7 @@ function ObjectInformatizationAccordionSummary({id, nameObjectInformatization}) 
                             onClick={(e) => {
                                 e.stopPropagation()
                                 setOiId(id)
+                                localStorage.setItem('oiid', id)
                                 redirect()
                             }}
                         >
@@ -98,9 +96,6 @@ function ObjectInformatizationAccordionDetails(
                 </div>
                 <div className="body__accordion__button__oi">
                     <ButtonGroup orientation="horizontal" sx={{boxShadow: "unset", borderRadius: "12px"}}>
-                        <Button>
-                            <EditIcon/>
-                        </Button>
                         <Button onClick={() => {
                             setName(nameObjectInformatization)
                             setActive(true)

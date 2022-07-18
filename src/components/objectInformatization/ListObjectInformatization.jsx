@@ -5,8 +5,9 @@ import BodyObjectInformatizationBlock from "./BodyObjectInformatizationBlock";
 import {useState} from "react";
 import HeaderBlock from "../HeaderBlock";
 import PopupCreateObjectInformatization from "../popup/PopupCreateObjectInformatization";
+import {useStateIfMounted} from "use-state-if-mounted";
 
-function ListObjectInformatization({dataObjectsInformatization}) {
+function ListObjectInformatization({dataObjectsInformatization, setOiId}) {
 
     const [active, setActive] = useState(false)
 
@@ -14,15 +15,24 @@ function ListObjectInformatization({dataObjectsInformatization}) {
 
     const [name, setName] = useState("")
 
+    const [searchValue, setSearchValue] = useStateIfMounted(null)
+
+    function handleSearchValue(event) {
+        const value = event.target.value
+        setSearchValue(value)
+    }
+
     return (
         <Box height="calc(100% - 10px)" overflow="auto" sx={{marginTop: "10px"}}>
-            <HeaderBlock setActive={setActive} label="Введите название ОИ"/>
+            <HeaderBlock setActive={setActive} label="Введите название ОИ" handleSearchValue={handleSearchValue}/>
             <BodyObjectInformatizationBlock
                 dataObjectsInformatization={dataObjectsInformatization}
                 setActive={setActiveRemove}
                 setName={setName}
+                searchValue={searchValue}
+                setOiId={setOiId}
             />
-            <PopupCreateObjectInformatization active={active} setActive={setActive}/>
+            <PopupCreateObjectInformatization active={active} setActive={setActive} isUpdate={false}/>
             <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name}/>
         </Box>
     );

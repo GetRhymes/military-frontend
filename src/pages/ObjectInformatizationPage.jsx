@@ -1,12 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ListObjectInformatization from "../components/objectInformatization/ListObjectInformatization";
 import dataObjectInformatizationJS from "../data/dataObjectInformatization";
-import {BaseContext} from "../context/context";
 
 
-function ObjectInformatizationPage() {
-
-    const {baseId} = useContext(BaseContext)
+function ObjectInformatizationPage({setOiId}) {
 
     const [dataObjectsInformatization, setDataObjectsInformatization] = useState([])
 
@@ -16,7 +13,7 @@ function ObjectInformatizationPage() {
 
     return (
         <div className="background main__container__info">
-            <ListObjectInformatization dataObjectsInformatization={dataObjectsInformatization}/>
+            <ListObjectInformatization dataObjectsInformatization={dataObjectsInformatization} setOiId={setOiId}/>
         </div>
     );
 }

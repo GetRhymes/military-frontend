@@ -36,3 +36,22 @@
     display: flex;
     justify-content: space-between;
 }
+
+.component_card {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 300px;
+    margin-right: 300px;
+    flex-direction: column;
+    height: 320px;
+}
+
+.component__content {
+    height: 320px;
+    display: flex;
+    justify-content: center;
+}
+
+.main__container__oi__info {
+    padding-bottom: 20px;
+}
