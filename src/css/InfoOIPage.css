@@ -18,9 +18,10 @@
     display: flex;
     justify-content: left;
     margin-bottom: 10px;
-    font-family: "Roboto","Helvetica","Arial", sans-serif;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-style: normal;
-    color: #366ac3;
+    /*color: #43774a;*/
+    color: #436531;
 }
 
 .font__header {
@@ -54,4 +55,34 @@
 
 .main__container__oi__info {
     padding-bottom: 20px;
+}
+
+.empty__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty__label {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-style: normal;
+    color: #436531;;
+    font-size: 20px;
+}
+
+.empty__plug {
+    height: 15px;
+}
+
+.empty__block__main {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 300px;
+    margin-right: 300px;
+    flex-direction: column;
+}
+
+.empty__block__main:hover {
+    color: white;
+    background-color: rgba(125, 139, 147, 0.12);
 }

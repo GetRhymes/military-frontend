@@ -5,18 +5,22 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import React from "react";
 import LabelInBlock from "./LabelInBlock";
 
-function SIOIBlock({siNumber}) {
+function SIOIBlock({siNumber, setActive, setIsSI, setSiNumber, setRemoveSi}) {
 
     return (
         <div className="header__card background__card">
             <div className="cert__body">
                 <LabelInBlock label={"Акт специальной проверки"} isHeader={false}/>
                 <ButtonGroup sx={{boxShadow: "unset", borderRadius: "12px", marginBottom: "10px"}} >
-                    <Button sx={{ height : "30px"}}>
+                    <Button sx={{ height : "30px"}} onClick={() => {
+                        setIsSI(true)
+                        setActive(true)
+                    }}>
                         <EditIcon/>
                     </Button>
                     <Button sx={{ height : "30px"}} onClick={ () => {
-
+                        setSiNumber(siNumber)
+                        setRemoveSi(true)
                     }}>
                         <DeleteIcon/>
                     </Button>

@@ -4,6 +4,7 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {useNavigate} from "react-router-dom";
+import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 
 function ObjectInformatizationAccordion(
     {
@@ -96,6 +97,9 @@ function ObjectInformatizationAccordionDetails(
                 </div>
                 <div className="body__accordion__button__oi">
                     <ButtonGroup orientation="horizontal" sx={{boxShadow: "unset", borderRadius: "12px"}}>
+                        <Button>
+                            <SystemUpdateAltIcon fontSize="medium" />
+                        </Button>
                         <Button onClick={() => {
                             setName(nameObjectInformatization)
                             setActive(true)

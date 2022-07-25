@@ -7,7 +7,7 @@ import HeaderBlock from "../HeaderBlock";
 import PopupCreateObjectInformatization from "../popup/PopupCreateObjectInformatization";
 import {useStateIfMounted} from "use-state-if-mounted";
 
-function ListObjectInformatization({dataObjectsInformatization, setOiId}) {
+function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoading}) {
 
     const [active, setActive] = useState(false)
 
@@ -24,7 +24,7 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId}) {
 
     return (
         <Box height="calc(100% - 10px)" overflow="auto" sx={{marginTop: "10px"}}>
-            <HeaderBlock setActive={setActive} label="Введите название ОИ" handleSearchValue={handleSearchValue}/>
+            <HeaderBlock setActive={setActive} label="Введите название ОИ" handleSearchValue={handleSearchValue} isBasePage={false}/>
             <BodyObjectInformatizationBlock
                 dataObjectsInformatization={dataObjectsInformatization}
                 setActive={setActiveRemove}
@@ -32,8 +32,8 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId}) {
                 searchValue={searchValue}
                 setOiId={setOiId}
             />
-            <PopupCreateObjectInformatization active={active} setActive={setActive} isUpdate={false}/>
-            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name}/>
+            <PopupCreateObjectInformatization active={active} setActive={setActive} setLoading={setLoading}/>
+            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} isOI={true}/>
         </Box>
     );
 }

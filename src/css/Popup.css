@@ -39,6 +39,13 @@
     width: 450px;
 }
 
+.popup__si__content {
+    border-radius: 12px;
+    background-color: white;
+    height: 275px;
+    width: 450px;
+}
+
 .popup__remove {
     border-radius: 12px;
     background-color: white;
@@ -54,7 +61,7 @@
     font-family: "Roboto","Helvetica","Arial", sans-serif;
     justify-content: center;
     color: white;
-    background-color: #366ac3;
+    background-color: #436531;;
     display: flex;
 }
 
@@ -86,4 +93,10 @@
     margin-left: 12.5px;
     height: 105px;
     width: 425px;
+}
+
+.popup__loading__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

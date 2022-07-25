@@ -5,7 +5,7 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import React from "react";
 import LabelInBlock from "./LabelInBlock";
 
-function CertOIBlock({certNumber, setActive}) {
+function CertOIBlock({certNumber, setActive, setActiveRemove, setCertNumber}) {
 
     return (
         <div className="header__card background__card">
@@ -16,7 +16,8 @@ function CertOIBlock({certNumber, setActive}) {
                         <EditIcon/>
                     </Button>
                     <Button sx={{ height : "30px"}} onClick={ () => {
-
+                        setCertNumber(certNumber)
+                        setActiveRemove(true)
                     }}>
                         <DeleteIcon/>
                     </Button>

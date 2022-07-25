@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import TopicIcon from '@mui/icons-material/Topic';
 import {useNavigate} from "react-router-dom";
 import {BaseContext} from "../../context/context";
+import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 
 function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, setActive, setName, setActiveCreate, setBaseId}) {
     return (
@@ -62,9 +63,6 @@ function WarCampAccordionSummary({nameWarCamp, baseId}) {
 }
 
 function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, setActive, setName, setActiveCreate, id, setBaseId}) {
-
-
-
     return (
         <AccordionDetails>
             <div className="background body__accordion__container">
@@ -80,8 +78,12 @@ function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, s
                         }}>
                             <EditIcon/>
                         </Button>
+                        <Button>
+                            <SystemUpdateAltIcon fontSize="medium" />
+                        </Button>
                         <Button onClick={ () => {
                             setName(nameWarCamp)
+                            setBaseId(id)
                             setActive(true)
                         }}>
                             <DeleteIcon/>

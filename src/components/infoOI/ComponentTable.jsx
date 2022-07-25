@@ -8,6 +8,7 @@ import {AutoSizer, Column, Table} from 'react-virtualized';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from "@mui/material/IconButton";
 import AddIcon from '@mui/icons-material/Add';
+import {ComponentContext} from "../../context/context";
 
 const classes = {
     flexContainer: 'ReactVirtualizedDemo-flexContainer',
@@ -89,30 +90,32 @@ class MuiVirtualizedTable extends React.PureComponent {
         const {headerHeight, columns} = this.props;
 
         return (
-            <TableCell
-                component="div"
-                className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
-                variant="head"
-                style={{
-                    height: headerHeight,
-                    padding: "8px",
-                    justifyContent: columnIndex === 5 || columnIndex === 6 || columnIndex === 4 ? 'center' : 'unset'
-                }}
-                align={columns[columnIndex].numeric || false ? 'right' : 'left'}
-            >
-                <span>
-                    {
-                        columnIndex === 3 ?
-                            <IconButton onClick={(event) => {
-                                event.stopPropagation()
-                            }}>
-                                <AddIcon fontSize="medium"/>
-                            </IconButton>
-                            :
-                            label
-                    }
-                </span>
-            </TableCell>
+                    <TableCell
+                        component="div"
+                        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+                        variant="head"
+                        style={{
+                            height: headerHeight,
+                            padding: "8px",
+                            justifyContent: columnIndex === 5 || columnIndex === 6 || columnIndex === 4 ? 'center' : 'unset'
+                        }}
+                        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
+                    >
+                        <ComponentContext.Consumer>
+                            {(setActive) => (
+                                <span>
+                                    {
+                                        columnIndex === 3 ?
+                                            <IconButton onClick={() => setActive(true)}>
+                                                <AddIcon fontSize="medium"/>
+                                            </IconButton>
+                                            :
+                                            label
+                                    }
+                                </span>
+                            )}
+                        </ComponentContext.Consumer>
+                    </TableCell>
         );
     };
 
@@ -176,7 +179,7 @@ function createData(id, emptyStart, name, series, remove) {
     return {id, emptyStart, name, series, remove};
 }
 
-export default function ComponentTable({dataComponent}) {
+export default function ComponentTable({dataComponent, setComponentName, setComponentSeries, setRemoveComponent, setIdComp}) {
 
     return (
         <Paper style={{height: "100%", width: "550px"}}>
@@ -191,6 +194,10 @@ export default function ComponentTable({dataComponent}) {
                             component.name,
                             component.series,
                             <IconButton onClick={(event) => {
+                                setComponentName(component.name)
+                                setComponentSeries(component.series)
+                                setRemoveComponent(true)
+                                setIdComp(component.id)
                                 event.stopPropagation()
                             }}>
                                 <ClearIcon fontSize="medium"/>

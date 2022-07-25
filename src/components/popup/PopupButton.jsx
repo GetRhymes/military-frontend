@@ -5,7 +5,7 @@ function PopupButton({text, action, color}) {
     return (
         <Button
             sx={{
-                backgroundColor: color !== undefined ? color : "#366ac3",
+                backgroundColor: color !== undefined ? color : "#436531;",
                 color: "white",
                 width: "110px",
                 borderRadius: "12px",

@@ -4,9 +4,9 @@ const dataObjectInformatizationJS = [
         name: "Объект информатизации №1",
         dateUpdate: "2022-12-01",
         numberOfDocuments: "23",
-        cert: "2344/234",
-        si: "12/4321",
-        scr: "1242/12323",
+        cert: null,
+        si: null,
+        scr: null,
     },
     {
         id: "2",

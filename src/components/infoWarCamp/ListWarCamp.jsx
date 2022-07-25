@@ -7,7 +7,7 @@ import PopupRemove from "../popup/PopupRemove";
 import HeaderBlock from "../HeaderBlock";
 import {useStateIfMounted} from "use-state-if-mounted";
 
-function ListWarCamp({dataWarCamp}) {
+function ListWarCamp({dataWarCamp, setLoading}) {
 
     const [active, setActive] = useState(false)
 
@@ -26,7 +26,7 @@ function ListWarCamp({dataWarCamp}) {
 
     return (
         <Box height="calc(100% - 10px)" overflow="auto" sx={{marginTop: "10px"}}>
-            <HeaderBlock setActive={setActive} label="Введите название части" handleSearchValue={handleSearchValue}/>
+            <HeaderBlock setActive={setActive} label="Введите название части" handleSearchValue={handleSearchValue} isBasePage={true}/>
             <BodyWarCampBlock
                 dataWarCamp={dataWarCamp}
                 setActive={setActiveRemove}
@@ -35,8 +35,8 @@ function ListWarCamp({dataWarCamp}) {
                 setBaseId={setBaseId}
                 searchValue={searchValue}
             />
-            <PopupCreateWarCamp active={active} setActive={setActive} id={baseId} setBaseId={setBaseId}/>
-            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name}/>
+            <PopupCreateWarCamp active={active} setActive={setActive} id={baseId} setBaseId={setBaseId} setLoading={setLoading}/>
+            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} id={baseId} isOI={false}/>
         </Box>
     );
 }

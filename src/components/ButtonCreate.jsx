@@ -9,12 +9,12 @@ function ButtonCreate({setActive}) {
         marginLeft: "20px",
         paddingRight: "13px",
         borderRadius: "30px",
-        backgroundColor: "#366ac3",
+        backgroundColor: "#436531;",
         color: "white",
         boxShadow: "0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)",
         ":hover": {
             color: "#ffffff",
-            backgroundColor: "#739ee8"
+            backgroundColor: "#64b06d"
         }
     }
 

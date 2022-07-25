@@ -22,11 +22,11 @@
 }
 
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
-    background: #366ac3;
+    background: #436531;;
 }
 
 .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper {
-    background: #366ac3;
+    background: #436531;;
 }
 
 .loading__screen {
@@ -47,7 +47,7 @@
     font-family: "Roboto","Helvetica","Arial", sans-serif;
     font-size: 40px;
     font-style: normal;
-    color: #366ac3;
+    color: #436531;;
 }
 
 .loading__screen {
@@ -56,3 +56,5 @@
     justify-content: center;
     align-items: center;
 }
+
+/*366AC3FF*/

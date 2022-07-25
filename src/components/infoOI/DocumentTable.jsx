@@ -8,6 +8,8 @@ import {AutoSizer, Column, Table} from 'react-virtualized';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from "@mui/material/IconButton";
 import AddIcon from '@mui/icons-material/Add';
+import {DocumentContext} from "../../context/context";
+import {useContext} from "react";
 
 const classes = {
     flexContainer: 'ReactVirtualizedDemo-flexContainer',
@@ -100,18 +102,23 @@ class MuiVirtualizedTable extends React.PureComponent {
                 }}
                 align={columns[columnIndex].numeric || false ? 'right' : 'left'}
             >
-                <span>
-                    {
-                        columnIndex === 4 ?
-                            <IconButton onClick={(event) => {
-                                event.stopPropagation()
-                            }}>
-                                <AddIcon fontSize="medium"/>
-                            </IconButton>
-                            :
-                            label
-                    }
-                </span>
+                <DocumentContext.Consumer>
+                    {(setActive) => (
+                        <span>
+                            {
+                                columnIndex === 4 ?
+                                    <IconButton onClick={(event) => {
+                                        event.stopPropagation()
+                                        setActive(true)
+                                    }}>
+                                        <AddIcon fontSize="medium"/>
+                                    </IconButton>
+                                    :
+                                    label
+                            }
+                        </span>
+                    )}
+                </DocumentContext.Consumer>
             </TableCell>
         );
     };
@@ -176,14 +183,11 @@ function createData(id, emptyStart, name, regNum, date, remove) {
     return {id, emptyStart, name, regNum, date, remove};
 }
 
-export default function DocumentTable({dataDocument}) {
+export default function DocumentTable({dataDocument, setDocumentName, setRemoveDocument, setDocumentNumReg, setIdDoc}) {
 
     return (
         <Paper style={{height: "100%", width: "650px"}}>
             <VirtualizedTable
-                onRowClick={({index}) => {
-                    console.log("hi")
-                }}
                 rowCount={dataDocument.length}
                 rowGetter={
                     ({index}) => {
@@ -195,6 +199,10 @@ export default function DocumentTable({dataDocument}) {
                             document.regNum,
                             document.date,
                             <IconButton onClick={(event) => {
+                                setDocumentName(document.name)
+                                setDocumentNumReg(document.regNum)
+                                setRemoveDocument(true)
+                                setIdDoc(document.id)
                                 event.stopPropagation()
                             }}>
                                 <ClearIcon fontSize="medium"/>

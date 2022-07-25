@@ -1,6 +1,7 @@
 .top__bar {
     height: 65px;
-    background: #366ac3;
+    /*background: #366ac3;*/
+    background: #436531;
     display: flex;
     justify-content: space-between;
 }
@@ -60,7 +61,7 @@
     font-size: 24px;
     font-style: normal;
     font-family: "Roboto","Helvetica","Arial", sans-serif;
-    color: #366ac3;
+    color: #436531;
 }
 
 .notification__item {
@@ -81,7 +82,7 @@
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-size: 20px;
     font-style: normal;
-    color: #366ac3
+    color: #436531;
 }
 
 .notification__info {
@@ -109,7 +110,7 @@
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-size: 15px;
     font-style: normal;
-    color: #366ac3
+    color: #436531;
 }
 
 .notification__row__left {
@@ -127,5 +128,5 @@
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-size: 24px;
     font-style: normal;
-    color: #366ac3
+    color: #436531;
 }

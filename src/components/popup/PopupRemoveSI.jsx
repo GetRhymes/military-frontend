@@ -1,11 +1,9 @@
-import React from 'react';
 import PopupButton from "./PopupButton";
-import '../../css/Popup.css'
-import '../../css/InfoPage.css'
+import React from "react";
 import axios from "axios";
-import {URL_deleteOI, URL_deleteWarCampById} from "../../api/Api";
+import {URL_removeSI} from "../../api/Api";
 
-function PopupRemove({active, setActive, name, setLoading, id, isOI}) {
+function PopupRemoveSI({active, setActive, number, id, setLoading}) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -14,10 +12,10 @@ function PopupRemove({active, setActive, name, setLoading, id, isOI}) {
                 <div>
                     <p className="popup__label">Удалить часть</p>
                     <div className="background popup__cont__message">
-                       <p className="popup__message">Вы точно хотите удалить: "{name}"?</p>
+                        <p className="popup__message">Вы точно хотите удалить акт специальной проверки №{number}?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={() => deleteWarCampById(setLoading, id, isOI)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={() => removeSI(setLoading, id)}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -28,10 +26,10 @@ function PopupRemove({active, setActive, name, setLoading, id, isOI}) {
     );
 }
 
-async function deleteWarCampById(setLoading, id, isOI) {
+async function removeSI(setLoading, id) {
     setLoading(true)
-    await axios.post(isOI ? URL_deleteOI : URL_deleteWarCampById, { id })
+    await axios.post(URL_removeSI, { id })
     setLoading(false)
 }
 
-export default PopupRemove;
+export default PopupRemoveSI;

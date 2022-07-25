@@ -5,8 +5,10 @@ import PopupButton from "./PopupButton";
 import {useStateIfMounted} from "use-state-if-mounted";
 import {LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import axios from "axios";
+import {URL_createCert} from "../../api/Api";
 
-function PopupUpdateCert({active, setActive}) {
+function PopupUpdateCert({active, setActive, id, setLoading}) {
 
     const [numberCert, setNumberCert] = useStateIfMounted("")
 
@@ -48,10 +50,11 @@ function PopupUpdateCert({active, setActive}) {
     }
 
     return (
+
         <div className={active ? "popup active" : "popup"}>
             <div className="popup__cert" onClick={e => e.stopPropagation()}>
                 <div>
-                    <p className="popup__label">Добавить часть</p>
+                    <p className="popup__label">Добавить аттестат</p>
                     <div className="popup__data__fields">
                         <TextField
                             value={numberCert}
@@ -81,11 +84,12 @@ function PopupUpdateCert({active, setActive}) {
                         <Box sx={{ marginTop: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DesktopDatePicker
+
                                     label="Дата сертификации"
                                     inputFormat="dd.MM.yyyy"
                                     value={dateCreateCert}
                                     onChange={handleDateCreateCert}
-                                    renderInput={(params) => <TextField sx={{marginRight: "10px"}} {...params} />}
+                                    renderInput={(params) => <TextField sx={{marginRight: "10px"}} {...params} color="primary" />}
                                 />
                             </LocalizationProvider>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -101,7 +105,9 @@ function PopupUpdateCert({active, setActive}) {
                     </div>
                     <div className="popup__buttons">
                         <PopupButton text="Создать" action={() => {
-
+                            if (id !== undefined && id !== null && id !== '') {
+                                createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id)
+                            }
                         }}/>
                         <PopupButton text="Закрыть" action={() => {
                             clearStates()
@@ -112,6 +118,20 @@ function PopupUpdateCert({active, setActive}) {
             </div>
         </div>
     );
+}
+
+async function createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id) {
+    setLoading(true)
+    const date = {
+        id,
+        numberCert,
+        owner,
+        category,
+        dateCreateCert,
+        dateFinishCert
+    }
+    await axios.post(URL_createCert, date)
+    setLoading(false)
 }
 
 export default PopupUpdateCert;
