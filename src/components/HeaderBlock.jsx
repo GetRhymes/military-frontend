@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Button, IconButton, InputAdornment, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ButtonCreate from "./ButtonCreate";
 import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
+import axios from "axios";
+import {URL_downloadFull} from "../api/Api";
+import PopupLoading from "./popup/PopupLoading";
+import FileSaver from 'file-saver';
 
 function HeaderBlock({setActive, label, handleSearchValue, isBasePage}) {
+
+    const [activeScreen, setActiveScreen] = useState(false)
+
     const containerStyle = {
         marginTop: "20px",
         display: 'flex',
@@ -46,7 +53,7 @@ function HeaderBlock({setActive, label, handleSearchValue, isBasePage}) {
             <Box>
                 {
                     isBasePage ?
-                        <Button sx={buttonStyle}>
+                        <Button sx={buttonStyle} onClick={() => downloadFull(setActiveScreen)}>
                             <SystemUpdateAltIcon fontSize="medium" />
                         </Button>
                         :
@@ -55,8 +62,21 @@ function HeaderBlock({setActive, label, handleSearchValue, isBasePage}) {
 
                 <ButtonCreate setActive={setActive}/>
             </Box>
+            <PopupLoading active={activeScreen}/>
         </Box>
     );
+}
+
+async function downloadFull(setActive) {
+    setActive(true)
+    const file = await axios.post(URL_downloadFull, {}, {responseType: 'arraybuffer'})
+    const fileName = file.headers['content-disposition'].split('filename=')[1];
+    const blob = new Blob(
+        [file.data],
+        {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    )
+    FileSaver.saveAs(blob, fileName)
+    setActive(false)
 }
 
 export default HeaderBlock;

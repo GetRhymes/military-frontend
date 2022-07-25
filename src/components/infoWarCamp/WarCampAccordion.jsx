@@ -7,8 +7,22 @@ import TopicIcon from '@mui/icons-material/Topic';
 import {useNavigate} from "react-router-dom";
 import {BaseContext} from "../../context/context";
 import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
+import axios from "axios";
+import {URL_downloadBase, URL_downloadFull} from "../../api/Api";
 
-function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, setActive, setName, setActiveCreate, setBaseId}) {
+function WarCampAccordion(
+    {
+        baseId,
+        nameWarCamp,
+        numberWarCamp,
+        locationWarCamp,
+        setActive,
+        setName,
+        setActiveCreate,
+        setBaseId,
+        setActiveScreen
+    }
+) {
     return (
         <Accordion
             inputprops={{position: "initial"}}
@@ -25,6 +39,7 @@ function WarCampAccordion({baseId, nameWarCamp, numberWarCamp, locationWarCamp, 
                 setName={setName}
                 setActiveCreate={setActiveCreate}
                 setBaseId={setBaseId}
+                setActiveScreen={setActiveScreen}
             />
         </Accordion>
     );
@@ -62,7 +77,19 @@ function WarCampAccordionSummary({nameWarCamp, baseId}) {
     );
 }
 
-function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, setActive, setName, setActiveCreate, id, setBaseId}) {
+function WarCampAccordionDetails(
+    {
+        nameWarCamp,
+        locationWarCamp,
+        numberWarCamp,
+        setActive,
+        setName,
+        setActiveCreate,
+        id,
+        setBaseId,
+        setActiveScreen
+    }
+) {
     return (
         <AccordionDetails>
             <div className="background body__accordion__container">
@@ -71,17 +98,17 @@ function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, s
                     <FilterRowInfo nameRow="Место расположения:" valueRow={locationWarCamp} isOI={false}/>
                 </div>
                 <div className="body__accordion__button">
-                    <ButtonGroup sx={{boxShadow: "unset", borderRadius: "12px"}} >
+                    <ButtonGroup sx={{boxShadow: "unset", borderRadius: "12px"}}>
                         <Button onClick={() => {
                             setBaseId(id)
                             setActiveCreate(true)
                         }}>
                             <EditIcon/>
                         </Button>
-                        <Button>
-                            <SystemUpdateAltIcon fontSize="medium" />
+                        <Button onClick={() => downloadBase(setActiveScreen, id)}>
+                            <SystemUpdateAltIcon fontSize="medium"/>
                         </Button>
-                        <Button onClick={ () => {
+                        <Button onClick={() => {
                             setName(nameWarCamp)
                             setBaseId(id)
                             setActive(true)
@@ -93,6 +120,18 @@ function WarCampAccordionDetails({nameWarCamp, locationWarCamp, numberWarCamp, s
             </div>
         </AccordionDetails>
     );
+}
+
+async function downloadBase(setActive, id) {
+    setActive(true)
+    const file = await axios.post(URL_downloadBase, {id}, {responseType: 'arraybuffer'})
+    const fileName = file.headers['content-disposition'].split('filename=')[1];
+    const blob = new Blob(
+        [file.data],
+        {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    )
+    FileSaver.saveAs(blob, fileName)
+    setActive(false)
 }
 
 export default WarCampAccordion;

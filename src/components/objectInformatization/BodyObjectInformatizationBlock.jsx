@@ -3,7 +3,7 @@ import List from "@mui/material/List";
 import ObjectInformatizationAccordion from "./ObjectInformatizationAccordion";
 import {Box} from "@mui/material";
 
-function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, setName, searchValue, setOiId}) {
+function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, setName, searchValue, setOiId, setActiveScreen}) {
     return (
         <Box height="calc(100% - 60px)" overflow="auto" sx={{marginTop: "10px"}}>
             <List>
@@ -23,6 +23,7 @@ function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, 
                                     setActive={setActive}
                                     setName={setName}
                                     setOiId={setOiId}
+                                    setActiveScreen={setActiveScreen}
                                 />
                             );
                         }
@@ -40,6 +41,7 @@ function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, 
                                 setActive={setActive}
                                 setName={setName}
                                 setOiId={setOiId}
+                                setActiveScreen={setActiveScreen}
                             />
                         );
                     }

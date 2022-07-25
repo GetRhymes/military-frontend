@@ -91,3 +91,9 @@ export const URL_removeDocument = BASE_OI + ''  //POST { id }
 export const URL_getDataComponentById = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
 export const URL_getDataDocumentById = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
 
+
+const BASE_DOWNLOAD = API_ROOT + API_PREFIX + '/download'
+export const URL_downloadFull = BASE_DOWNLOAD + '/full'
+export const URL_downloadBase = BASE_DOWNLOAD + '/base'
+export const URL_downloadObj = BASE_DOWNLOAD + '/obj'
+

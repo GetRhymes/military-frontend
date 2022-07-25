@@ -6,6 +6,7 @@ import PopupCreateWarCamp from "../popup/PopupCreateWarCamp";
 import PopupRemove from "../popup/PopupRemove";
 import HeaderBlock from "../HeaderBlock";
 import {useStateIfMounted} from "use-state-if-mounted";
+import PopupLoading from "../popup/PopupLoading";
 
 function ListWarCamp({dataWarCamp, setLoading}) {
 
@@ -16,6 +17,8 @@ function ListWarCamp({dataWarCamp, setLoading}) {
     const [name, setName] = useState("")
 
     const [baseId, setBaseId] = useState("")
+
+    const [activeScreen, setActiveScreen] = useState(false)
 
     const [searchValue, setSearchValue] = useStateIfMounted(null)
 
@@ -34,9 +37,11 @@ function ListWarCamp({dataWarCamp, setLoading}) {
                 setActiveCreate={setActive}
                 setBaseId={setBaseId}
                 searchValue={searchValue}
+                setActiveScreen={setActiveScreen}
             />
             <PopupCreateWarCamp active={active} setActive={setActive} id={baseId} setBaseId={setBaseId} setLoading={setLoading}/>
             <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} id={baseId} isOI={false}/>
+            <PopupLoading active={activeScreen}/>
         </Box>
     );
 }

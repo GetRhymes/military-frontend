@@ -6,12 +6,15 @@ import {useState} from "react";
 import HeaderBlock from "../HeaderBlock";
 import PopupCreateObjectInformatization from "../popup/PopupCreateObjectInformatization";
 import {useStateIfMounted} from "use-state-if-mounted";
+import PopupLoading from "../popup/PopupLoading";
 
 function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoading, idMB}) {
 
     const [active, setActive] = useState(false)
 
     const [activeRemove, setActiveRemove] = useState(false)
+
+    const [activeScreen, setActiveScreen] = useState(false)
 
     const [name, setName] = useState("")
 
@@ -31,9 +34,11 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoad
                 setName={setName}
                 searchValue={searchValue}
                 setOiId={setOiId}
+                setActiveScreen={setActiveScreen}
             />
             <PopupCreateObjectInformatization active={active} setActive={setActive} setLoading={setLoading} idMB={idMB}/>
             <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} isOI={true}/>
+            <PopupLoading active={activeScreen}/>
         </Box>
     );
 }

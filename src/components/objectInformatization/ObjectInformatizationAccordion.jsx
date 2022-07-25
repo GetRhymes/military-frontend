@@ -5,6 +5,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {useNavigate} from "react-router-dom";
 import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
+import axios from "axios";
+import {URL_downloadObj} from "../../api/Api";
 
 function ObjectInformatizationAccordion(
     {
@@ -17,7 +19,8 @@ function ObjectInformatizationAccordion(
         scr,
         setActive,
         setName,
-        setOiId
+        setOiId,
+        setActiveScreen
     }
 ) {
     return (
@@ -36,6 +39,8 @@ function ObjectInformatizationAccordion(
                 scr={scr}
                 setActive={setActive}
                 setName={setName}
+                setActiveScreen={setActiveScreen}
+                id={id}
             />
         </Accordion>
     );
@@ -81,7 +86,9 @@ function ObjectInformatizationAccordionDetails(
         si,
         scr,
         setActive,
-        setName
+        setName,
+        id,
+        setActiveScreen
     }
 ) {
     return (
@@ -97,7 +104,7 @@ function ObjectInformatizationAccordionDetails(
                 </div>
                 <div className="body__accordion__button__oi">
                     <ButtonGroup orientation="horizontal" sx={{boxShadow: "unset", borderRadius: "12px"}}>
-                        <Button>
+                        <Button onClick={() => downloadObj(setActiveScreen, id)}>
                             <SystemUpdateAltIcon fontSize="medium" />
                         </Button>
                         <Button onClick={() => {
@@ -111,6 +118,18 @@ function ObjectInformatizationAccordionDetails(
             </div>
         </AccordionDetails>
     );
+}
+
+async function downloadObj(setActive, id) {
+    setActive(true)
+    const file = await axios.post(URL_downloadObj, {id}, {responseType: 'arraybuffer'})
+    const fileName = file.headers['content-disposition'].split('filename=')[1];
+    const blob = new Blob(
+        [file.data],
+        {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    )
+    FileSaver.saveAs(blob, fileName)
+    setActive(false)
 }
 
 export default ObjectInformatizationAccordion;
