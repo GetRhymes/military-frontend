@@ -5,7 +5,7 @@ import axios from "axios";
 import {URL_createOI, URL_updateOI} from "../../api/Api";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function PopupCreateObjectInformatization({active, setActive, oldName, setLoading, id}) {
+function PopupCreateObjectInformatization({active, setActive, oldName, setLoading, id, idMB}) {
 
     const [nameOI, setNameOI] = useState(oldName !== undefined ? oldName : "")
 
@@ -33,7 +33,7 @@ function PopupCreateObjectInformatization({active, setActive, oldName, setLoadin
                                     if (id !== undefined && id !== null && id !== '') {
                                         updateOI(setLoading, nameOI, id)
                                     } else {
-                                        createOI(setLoading, nameOI)
+                                        createOI(setLoading, nameOI, idMB)
                                     }
                                     setActive(false)
                                 }
@@ -48,9 +48,9 @@ function PopupCreateObjectInformatization({active, setActive, oldName, setLoadin
     );
 }
 
-async function createOI(setLoading, nameOI) {
+async function createOI(setLoading, nameOI, id) {
     setLoading(true)
-    await axios.post(URL_createOI, { nameOI })
+    await axios.post(URL_createOI, { id, nameOI })
     setLoading(false)
 }
 

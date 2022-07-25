@@ -7,7 +7,7 @@ import HeaderBlock from "../HeaderBlock";
 import PopupCreateObjectInformatization from "../popup/PopupCreateObjectInformatization";
 import {useStateIfMounted} from "use-state-if-mounted";
 
-function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoading}) {
+function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoading, idMB}) {
 
     const [active, setActive] = useState(false)
 
@@ -32,7 +32,7 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoad
                 searchValue={searchValue}
                 setOiId={setOiId}
             />
-            <PopupCreateObjectInformatization active={active} setActive={setActive} setLoading={setLoading}/>
+            <PopupCreateObjectInformatization active={active} setActive={setActive} setLoading={setLoading} idMB={idMB}/>
             <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} isOI={true}/>
         </Box>
     );

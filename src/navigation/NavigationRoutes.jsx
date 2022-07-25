@@ -21,7 +21,7 @@ function NavigationRoutes() {
         }}>
             <Routes>
                 <Route path="/bases" element={<BasePage/>}/>
-                <Route path="/oi" element={<ObjectInformatizationPage setOiId={setOiId}/>}/>
+                <Route path="/oi" element={<ObjectInformatizationPage setOiId={setOiId} id={baseId}/>}/>
                 <Route path="/info-oi" element={<InfoOiPage oiId={oiId}/>}/>
                 <Route path="*" element={<Navigate to="/bases"/>}/>
             </Routes>
