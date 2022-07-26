@@ -4,18 +4,21 @@ import dataObjectInformatizationJS from "../data/dataObjectInformatization";
 import axios from "axios";
 import {URL_getDataOI, URL_getDataWarCamp} from "../api/Api";
 import LoadingScreen from "../components/LoadingScreen";
+import {useStateIfMounted} from "use-state-if-mounted";
 
 
 function ObjectInformatizationPage({setOiId, id}) {
 
-    const [dataObjectsInformatization, setDataObjectsInformatization] = useState([])
+    const [dataObjectsInformatization, setDataObjectsInformatization] = useStateIfMounted([])
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setDataObjectsInformatization(dataObjectInformatizationJS)
-        // fetchDataOI(setDataObjectsInformatization, setLoading)
+        // setDataObjectsInformatization(dataObjectInformatizationJS)
+        fetchDataOI(setDataObjectsInformatization, setLoading, id)
     }, [])
+
+    console.log(dataObjectsInformatization)
 
     return (
         loading ?

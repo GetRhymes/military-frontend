@@ -24,8 +24,6 @@ import PopupRemoveDocument from "../components/popup/PopupRemoveDocument";
 import PopupRemoveSCR from "../components/popup/PopupRemoveSCR";
 import axios from "axios";
 import {URL_getDataComponentById, URL_getDataDocumentById, URL_getDataOIById} from "../api/Api";
-import dataDocumentsJS from "../data/dataDocuments";
-import dataComponentsJS from "../data/dataComponent";
 
 function InfoOiPage({oiId}) {
 
@@ -84,13 +82,15 @@ function InfoOiPage({oiId}) {
     const [dataComponent, setDataComponent] = useState([])
 
     useEffect(() => {
-        if (oiId === null) oiId = localStorage.getItem('oiid')
+        if (oiId === null) {
+            oiId = localStorage.getItem('oiid')
+        }
         fetchDataOI(setLoading, oiId, setOi)
         fetchDataDocument(setLoadingDataDocument, oiId, setDataDocument)
         fetchDataComponent(setLoadingDataComponent, oiId, setDataComponent)
     }, [])
 
-    let isLoading = loading || loadingDataDocument || loadingDataComponent
+    let isLoading = loading || loadingDataDocument || loadingDataComponent || oi === {}
 
     return (
         isLoading ?
@@ -101,7 +101,7 @@ function InfoOiPage({oiId}) {
                 {
                     oi.cert !== null ?
                         <CertOIBlock
-                            certNumber={oi.cert}
+                            cert={oi.cert}
                             setActive={setActiveCert}
                             setActiveRemove={setRemoveCert}
                             setCertNumber={setCertNumber}
@@ -112,7 +112,7 @@ function InfoOiPage({oiId}) {
                 {
                     oi.si !== null ?
                         <SIOIBlock
-                            siNumber={oi.si}
+                            si={oi.si}
                             setActive={setActiveS}
                             setIsSI={setIsSI}
                             setRemoveSi={setRemoveSI}
@@ -124,7 +124,7 @@ function InfoOiPage({oiId}) {
                 {
                     oi.scr !== null ?
                         <SCROIBlock
-                            scrNumber={oi.scr}
+                            scr={oi.scr}
                             setActive={setActiveS}
                             setIsSI={setIsSI}
                             setRemoveSCR={setRemoveSCR}
@@ -173,27 +173,27 @@ function InfoOiPage({oiId}) {
 async function fetchDataOI(setLoading, oiId, setOi) {
     setLoading(true)
     const data = { id : oiId }
-    // const response = await axios.post(URL_getDataOIById, data)
-    // await setOi(response.data)
-    await setOi(dataObjectInformatizationJS.find((oi) => oi.id === oiId))
+    const response = await axios.post(URL_getDataOIById, data)
+    setOi(response.data)
+    // await setOi(dataObjectInformatizationJS.find((oi) => oi.id === oiId))
     setLoading(false)
 }
 
 async function fetchDataComponent(setLoading, oiId, setDataComponent) {
     setLoading(true)
     const data = { id : oiId }
-    // const response = await axios.post(URL_getDataComponentById, data)
-    // setDataComponent(response.data)
-    await setDataComponent(dataComponentsJS)
+    const response = await axios.post(URL_getDataComponentById, data)
+    setDataComponent(response.data)
+    // await setDataComponent(dataComponentsJS)
     setLoading(false)
 }
 
 async function fetchDataDocument(setLoading, oiId, setDataDocument) {
     setLoading(true)
     const data = { id : oiId }
-    // const response = await axios.post(URL_getDataDocumentById, data)
-    // setDataDocument(response.data)
-    await setDataDocument(dataDocumentsJS)
+    const response = await axios.post(URL_getDataDocumentById, data)
+    setDataDocument(response.data)
+    // await setDataDocument(dataDocumentsJS)
     setLoading(false)
 }
 

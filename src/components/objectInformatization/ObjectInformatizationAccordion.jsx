@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 import axios from "axios";
 import {URL_downloadObj} from "../../api/Api";
+import FileSaver from 'file-saver'
 
 function ObjectInformatizationAccordion(
     {
@@ -98,9 +99,9 @@ function ObjectInformatizationAccordionDetails(
                     <FilterRowInfo nameRow="Дата последнего изменения:" valueRow={dateUpdate} isOI={true}/>
                     <FilterRowInfo nameRow="Количество документов:" valueRow={numberOfDocuments} isOI={true}/>
                     <Divider/>
-                    <FilterRowInfo nameRow="Аттестат:" valueRow={cert !== null ? cert : "Пусто"} afterDivider={true} isOI={true}/>
-                    <FilterRowInfo nameRow="Акт специального исследования:" valueRow={si !== null ? si : "Пусто"} isOI={true}/>
-                    <FilterRowInfo nameRow="Заключение специальной проверки:" valueRow={scr !== null ? scr : "Пусто"} isOI={true}/>
+                    <FilterRowInfo nameRow="Аттестат:" valueRow={cert !== null ? cert.numberCert : "Пусто"} afterDivider={true} isOI={true}/>
+                    <FilterRowInfo nameRow="Акт специального исследования:" valueRow={si !== null ? si.numberDoc : "Пусто"} isOI={true}/>
+                    <FilterRowInfo nameRow="Заключение специальной проверки:" valueRow={scr !== null ? scr.numberDoc : "Пусто"} isOI={true}/>
                 </div>
                 <div className="body__accordion__button__oi">
                     <ButtonGroup orientation="horizontal" sx={{boxShadow: "unset", borderRadius: "12px"}}>

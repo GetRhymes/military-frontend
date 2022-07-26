@@ -5,7 +5,7 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import React from "react";
 import LabelInBlock from "./LabelInBlock";
 
-function SCROIBlock({scrNumber, setActive, setIsSI, setSCRNumber, setRemoveSCR}) {
+function SCROIBlock({scr, setActive, setIsSI, setSCRNumber, setRemoveSCR}) {
 
     return (
         <div className="header__card background__card">
@@ -19,7 +19,7 @@ function SCROIBlock({scrNumber, setActive, setIsSI, setSCRNumber, setRemoveSCR})
                         <EditIcon/>
                     </Button>
                     <Button sx={{ height : "30px"}} onClick={ () => {
-                        setSCRNumber(scrNumber)
+                        setSCRNumber(scr.numberDoc)
                         setRemoveSCR(true)
                     }}>
                         <DeleteIcon/>
@@ -28,8 +28,8 @@ function SCROIBlock({scrNumber, setActive, setIsSI, setSCRNumber, setRemoveSCR})
             </div>
             <div>
                 <Divider/>
-                <FilterRowInfo nameRow="Номер документа:" valueRow={scrNumber} isOI={false} afterDivider={true}/>
-                <FilterRowInfo nameRow="Дата проверки:" valueRow="2020-12-13" isOI={false}/>
+                <FilterRowInfo nameRow="Номер документа:" valueRow={scr.numberDoc} isOI={false} afterDivider={true}/>
+                <FilterRowInfo nameRow="Дата проверки:" valueRow={scr.dateCheck} isOI={false}/>
             </div>
         </div>
     );

@@ -17,9 +17,12 @@ function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, 
                                     nameObjectInformatization={oi.name}
                                     dateUpdate={oi.dateUpdate}
                                     numberOfDocuments={oi.numberOfDocuments}
-                                    cert={oi.cert}
-                                    si={oi.si}
-                                    scr={oi.scr}
+                                    // cert={oi.cert}
+                                    // si={oi.si}
+                                    // scr={oi.scr}
+                                    cert={null}
+                                    si={null}
+                                    scr={null}
                                     setActive={setActive}
                                     setName={setName}
                                     setOiId={setOiId}

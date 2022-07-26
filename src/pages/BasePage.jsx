@@ -11,17 +11,19 @@ function BasePage() {
 
     const [loading, setLoading] = useState(false)
 
+    const [update, setUpdate] = useState(false)
+
     useEffect(() => {
-        // fetchDataWarCamp(setDataWarCamp, setLoading)
-        setDataWarCamp(dataWarCampJS)
-    }, [])
+        fetchDataWarCamp(setDataWarCamp, setLoading)
+        // setDataWarCamp(dataWarCampJS)
+    }, [update])
 
     return (
         loading ?
             <LoadingScreen/>
             :
             <div className="background main__container__info">
-                <ListWarCamp dataWarCamp={dataWarCamp} setLoading={setLoading}/>
+                <ListWarCamp dataWarCamp={dataWarCamp} setLoading={setLoading} setUpdate={setUpdate}/>
             </div>
     );
 }

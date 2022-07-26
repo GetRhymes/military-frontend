@@ -8,7 +8,7 @@ import axios from "axios";
 import {URL_createWarCamp, URL_getDataWarCampById, URL_updateWarCamp} from "../../api/Api";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function PopupCreateWarCamp({active, setActive, id, setBaseId, setLoading}) {
+function PopupCreateWarCamp({active, setActive, id, setBaseId, setLoading, setUpdate}) {
 
     useEffect(() => {
         if (id !== "" && id !== undefined && id !== null) {
@@ -94,9 +94,9 @@ function PopupCreateWarCamp({active, setActive, id, setBaseId, setLoading}) {
                             <PopupButton text="Создать" action={() => {
                                 if (nameWarCamp.length !== 0 && numberWarCamp.length !== 0 && location.length !== 0) {
                                     if (id !== undefined && id !== null && id !== '') {
-                                        updateWarCamp(setLoading, id, nameWarCamp, numberWarCamp, location)
+                                        updateWarCamp(setLoading, id, nameWarCamp, numberWarCamp, location, setUpdate)
                                     } else {
-                                        createWarCamp(setLoading, nameWarCamp, numberWarCamp, location)
+                                        createWarCamp(setLoading, nameWarCamp, numberWarCamp, location, setUpdate)
                                     }
                                     cleanStates()
                                     setActive(false)
@@ -115,7 +115,8 @@ function PopupCreateWarCamp({active, setActive, id, setBaseId, setLoading}) {
 
 export default PopupCreateWarCamp;
 
-async function updateWarCamp(setLoading, id, nameWarCamp, numberWarCamp, location) {
+async function updateWarCamp(setLoading, id, nameWarCamp, numberWarCamp, location, setUpdate) {
+    setUpdate(true)
     setLoading(true)
     const data = {
         id,
@@ -125,9 +126,11 @@ async function updateWarCamp(setLoading, id, nameWarCamp, numberWarCamp, locatio
     }
     await axios.post(URL_updateWarCamp, data)
     setLoading(false)
+    setUpdate(false)
 }
 
-async function createWarCamp(setLoading, nameWarCamp, numberWarCamp, location) {
+async function createWarCamp(setLoading, nameWarCamp, numberWarCamp, location, setUpdate) {
+    setUpdate(true)
     setLoading(true)
     const data = {
         nameWarCamp,
@@ -136,6 +139,7 @@ async function createWarCamp(setLoading, nameWarCamp, numberWarCamp, location) {
     }
     await axios.post(URL_createWarCamp, data)
     setLoading(false)
+    setUpdate(false)
 }
 
 async function fetchDataWarCampById(id, setNameWarCamp, setNumberWarCamp, setLocation, setLoading) {

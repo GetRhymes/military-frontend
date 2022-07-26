@@ -8,7 +8,8 @@ import {useNavigate} from "react-router-dom";
 import {BaseContext} from "../../context/context";
 import SystemUpdateAltIcon from "@mui/icons-material/SystemUpdateAlt";
 import axios from "axios";
-import {URL_downloadBase, URL_downloadFull} from "../../api/Api";
+import {URL_downloadBase} from "../../api/Api";
+import FileSaver from 'file-saver'
 
 function WarCampAccordion(
     {
@@ -20,7 +21,7 @@ function WarCampAccordion(
         setName,
         setActiveCreate,
         setBaseId,
-        setActiveScreen
+        setActiveScreen,
     }
 ) {
     return (

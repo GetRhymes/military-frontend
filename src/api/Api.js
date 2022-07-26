@@ -1,11 +1,17 @@
 //MAIN ADDRESS
 const API_ROOT = 'http://localhost:8080'
-const API_PREFIX = ''
+const API_PREFIX = '/api'
+
+//URL Excel
+export const BASE_Excel = API_ROOT + API_PREFIX + '/download'
+export const URL_downloadFull = BASE_Excel + '/full' //POST
+export const URL_downloadBase = BASE_Excel + '/war-camp' //POST { id }
+export const URL_downloadObj = BASE_Excel + '/object-informatization' //POST { id }
 
 //URL WarCamp
-export const BASE_WarCamp = API_ROOT + API_PREFIX + ''
-export const URL_getDataWarCamp = BASE_WarCamp + '' //GET
-export const URL_updateWarCamp = BASE_WarCamp + '' //POST
+export const BASE_WarCamp = API_ROOT + API_PREFIX + '/war-camp'
+export const URL_getDataWarCamp = BASE_WarCamp + '/all' //GET
+export const URL_updateWarCamp = BASE_WarCamp + '/update' //POST
 /*
     const data = {
         id,
@@ -14,7 +20,7 @@ export const URL_updateWarCamp = BASE_WarCamp + '' //POST
         location
     }
 */
-export const URL_createWarCamp = BASE_WarCamp + '' //POST
+export const URL_createWarCamp = BASE_WarCamp + '/create' //POST
 /*
     const data = {
         nameWarCamp,
@@ -22,19 +28,20 @@ export const URL_createWarCamp = BASE_WarCamp + '' //POST
         location
     }
  */
-export const URL_getDataWarCampById = BASE_WarCamp + '' //POST { id }
-export const URL_deleteWarCampById = BASE_WarCamp + '' //POST { id }
+export const URL_getDataWarCampById = BASE_WarCamp + '/by-id' //POST { id }
+export const URL_deleteWarCampById = BASE_WarCamp + '/delete' //POST { id }
 
 //URL OI
-export const BASE_OI = API_ROOT + API_PREFIX + ''
-export const URL_getDataOI = BASE_OI + '' //GET
-export const URL_getDataOIById = BASE_OI + '' // POST const data = { id : oiId }
+export const BASE_OI = API_ROOT + API_PREFIX + '/informatization-object'
+export const URL_getDataOI = BASE_OI + '/by-war-camp' //POST { id !!!military base id!!! }
+export const URL_getDataOIById = BASE_OI + '/by-id' // POST const data = { id : oiId }
+export const URL_createOI = BASE_OI + '/create' //POST { id !!!military base id!!!, nameOI }
+export const URL_updateOI = BASE_OI + '/update' //POST const data = {id, nameOI}
+export const URL_deleteOI = BASE_OI + '/delete' //POST { id }
 
-export const URL_createOI = BASE_OI + '' //POST { nameOI }
-export const URL_updateOI = BASE_OI + '' //POST const data = {id, nameOI}
-export const URL_deleteOI = BASE_OI + '' //POST { id }
-
-export const URL_createCert = BASE_OI + '' //check backend layer //POST
+//URL Certificate
+export const BASE_Cert = API_ROOT + API_PREFIX + '/certificate'
+export const URL_createCert = BASE_Cert + '/create' //check backend layer //POST
 /*
     const date = {
         id, // !!!object_inf ID!!!
@@ -45,9 +52,11 @@ export const URL_createCert = BASE_OI + '' //check backend layer //POST
         dateFinishCert
     }
  */
-export const URL_removeCert = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
+export const URL_removeCert = BASE_Cert + '/delete' //POST { id //!!!object_inf ID!!! }
 
-export const URL_createSI = BASE_OI + '' //check backend layer //POST
+//URL SpecialInvestigation
+export const BASE_SI = API_ROOT + API_PREFIX + '/spec-investigation'
+export const URL_createSI = BASE_SI + '/create' //check backend layer //POST
 /*
     const data = {
         id // !!!object_inf ID!!!,
@@ -55,9 +64,11 @@ export const URL_createSI = BASE_OI + '' //check backend layer //POST
         dateCheck
     }
  */
-export const URL_removeSI = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
+export const URL_removeSI = BASE_SI + '/delete' //POST { id //!!!object_inf ID!!! }
 
-export const URL_createSCR = BASE_OI + '' //check backend layer //POST
+//URL SpecialCheckResult
+export const BASE_SCR = API_ROOT + API_PREFIX + '/spec-investigation'
+export const URL_createSCR = BASE_SCR + '/create' //check backend layer //POST
 /*
     const data = {
         id // !!!object_inf ID!!!,
@@ -65,9 +76,12 @@ export const URL_createSCR = BASE_OI + '' //check backend layer //POST
         dateCheck
     }
  */
-export const URL_removeSCR = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
+export const URL_removeSCR = BASE_SCR + '/delete' //POST { id //!!!object_inf ID!!! }
 
-export const URL_createComponent = BASE_OI + '' //POST
+//URL Component
+export const BASE_Component = API_ROOT + API_PREFIX + '/component'
+export const URL_getDataComponentById = BASE_Component + '/by-inform-object' //POST { id //!!!object_inf ID!!! }
+export const URL_createComponent = BASE_Component + '/create' //POST
 /*
     const data = {
         id // !!!object_inf ID!!!,
@@ -75,9 +89,12 @@ export const URL_createComponent = BASE_OI + '' //POST
         series
     }
  */
-export const URL_removeComponent = BASE_OI + '' //POST { id }
+export const URL_removeComponent = BASE_Component + '/delete' //POST { id }
 
-export const URL_createDocument = BASE_OI + '' //POST
+//URL Document
+export const BASE_Document = API_ROOT + API_PREFIX + '/inner-document'
+export const URL_getDataDocumentById = BASE_Document + '/by-inform-object' //POST { id //!!!object_inf ID!!! }
+export const URL_createDocument = BASE_Document + '/create' //POST
 /*
     const data = {
         id // !!!object_inf ID!!!,
@@ -86,14 +103,4 @@ export const URL_createDocument = BASE_OI + '' //POST
         date
     }
  */
-export const URL_removeDocument = BASE_OI + ''  //POST { id }
-
-export const URL_getDataComponentById = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
-export const URL_getDataDocumentById = BASE_OI + '' //POST { id //!!!object_inf ID!!! }
-
-
-const BASE_DOWNLOAD = API_ROOT + API_PREFIX + '/download'
-export const URL_downloadFull = BASE_DOWNLOAD + '/full'
-export const URL_downloadBase = BASE_DOWNLOAD + '/base'
-export const URL_downloadObj = BASE_DOWNLOAD + '/obj'
-
+export const URL_removeDocument = BASE_Document + '/delete'  //POST { id }

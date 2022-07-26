@@ -5,18 +5,18 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import React from "react";
 import LabelInBlock from "./LabelInBlock";
 
-function CertOIBlock({certNumber, setActive, setActiveRemove, setCertNumber}) {
+function CertOIBlock({cert, setActive, setActiveRemove, setCertNumber}) {
 
     return (
         <div className="header__card background__card">
             <div className="cert__body">
-                <LabelInBlock label={"Аттестат № " + certNumber} isHeader={false}/>
-                <ButtonGroup sx={{boxShadow: "unset", borderRadius: "12px", marginBottom: "10px"}} >
+                <LabelInBlock label={"Аттестат № " + cert.numberCert} isHeader={false}/>
+                <ButtonGroup sx={{ boxShadow: "unset", borderRadius: "12px", marginBottom: "10px" }} >
                     <Button sx={{ height : "30px"}} onClick={() => setActive(true)}>
                         <EditIcon/>
                     </Button>
                     <Button sx={{ height : "30px"}} onClick={ () => {
-                        setCertNumber(certNumber)
+                        setCertNumber(cert.numberCert)
                         setActiveRemove(true)
                     }}>
                         <DeleteIcon/>
@@ -25,10 +25,10 @@ function CertOIBlock({certNumber, setActive, setActiveRemove, setCertNumber}) {
             </div>
             <div>
                 <Divider/>
-                <FilterRowInfo nameRow="Орган сертификации:" valueRow="Кто-то" isOI={false} afterDivider={true}/>
-                <FilterRowInfo nameRow="Категория:" valueRow="2" isOI={false}/>
-                <FilterRowInfo nameRow="Дата аттестации:" valueRow="2020-12-13" isOI={false}/>
-                <FilterRowInfo nameRow="Дата переаттестации:" valueRow="2025-12-13" isOI={false}/>
+                <FilterRowInfo nameRow="Орган сертификации:" valueRow={cert.owner} isOI={false} afterDivider={true}/>
+                <FilterRowInfo nameRow="Категория:" valueRow={cert.category} isOI={false}/>
+                <FilterRowInfo nameRow="Дата аттестации:" valueRow={cert.dateCreateCert} isOI={false}/>
+                <FilterRowInfo nameRow="Дата переаттестации:" valueRow={cert.dateFinishCert} isOI={false}/>
             </div>
         </div>
     );

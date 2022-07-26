@@ -5,7 +5,7 @@ import FilterRowInfo from "../infoWarCamp/FilterRow";
 import React from "react";
 import LabelInBlock from "./LabelInBlock";
 
-function SIOIBlock({siNumber, setActive, setIsSI, setSiNumber, setRemoveSi}) {
+function SIOIBlock({si, setActive, setIsSI, setSiNumber, setRemoveSi}) {
 
     return (
         <div className="header__card background__card">
@@ -19,7 +19,7 @@ function SIOIBlock({siNumber, setActive, setIsSI, setSiNumber, setRemoveSi}) {
                         <EditIcon/>
                     </Button>
                     <Button sx={{ height : "30px"}} onClick={ () => {
-                        setSiNumber(siNumber)
+                        setSiNumber(si.numberDoc)
                         setRemoveSi(true)
                     }}>
                         <DeleteIcon/>
@@ -28,8 +28,8 @@ function SIOIBlock({siNumber, setActive, setIsSI, setSiNumber, setRemoveSi}) {
             </div>
             <div>
                 <Divider/>
-                <FilterRowInfo nameRow="Номер документа:" valueRow={siNumber} isOI={false} afterDivider={true}/>
-                <FilterRowInfo nameRow="Дата проверки:" valueRow="2020-12-13" isOI={false}/>
+                <FilterRowInfo nameRow="Номер документа:" valueRow={si.numberDoc} isOI={false} afterDivider={true}/>
+                <FilterRowInfo nameRow="Дата проверки:" valueRow={si.dateCheck} isOI={false}/>
             </div>
         </div>
     );
