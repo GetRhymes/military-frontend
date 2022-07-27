@@ -13,25 +13,33 @@ function ObjectInformatizationPage({setOiId, id}) {
 
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        // setDataObjectsInformatization(dataObjectInformatizationJS)
-        fetchDataOI(setDataObjectsInformatization, setLoading, id)
-    }, [])
+    const [update, setUpdate] = useState(false)
 
-    console.log(dataObjectsInformatization)
+    useEffect(() => {
+        fetchDataOI(setDataObjectsInformatization, setLoading, id)
+    }, [update])
 
     return (
         loading ?
             <LoadingScreen/>
             :
             <div className="background main__container__info">
-                <ListObjectInformatization dataObjectsInformatization={dataObjectsInformatization} setOiId={setOiId} setLoading={setLoading} idMB={id}/>
+                <ListObjectInformatization
+                    dataObjectsInformatization={dataObjectsInformatization}
+                    setOiId={setOiId}
+                    setLoading={setLoading}
+                    idMB={id}
+                    setUpdate={setUpdate}
+                />
             </div>
     );
 }
 
 async function fetchDataOI(setDataObjectsInformatization, setLoading, id) {
     setLoading(true)
+    if (id === "") {
+        id = localStorage.getItem('idMB')
+    }
     const data = await axios.post(URL_getDataOI, { id })
     setDataObjectsInformatization(data.data)
     setLoading(false)

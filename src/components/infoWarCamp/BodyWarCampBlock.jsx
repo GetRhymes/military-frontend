@@ -3,7 +3,18 @@ import WarCampAccordion from "./WarCampAccordion";
 import React from 'react';
 import {Box} from "@mui/material";
 
-function BodyWarCampBlock({dataWarCamp, setActive, setName, setActiveCreate, setBaseId, searchValue, setActiveScreen, setUpdate}) {
+function BodyWarCampBlock(
+    {
+        dataWarCamp,
+        setActive,
+        setName,
+        setActiveCreate,
+        setBaseId,
+        searchValue,
+        setActiveScreen,
+        setRemoveId
+    }
+) {
 
     return (
         <Box height="calc(100% - 60px)" overflow="auto" sx={{marginTop: "10px"}}>
@@ -23,7 +34,7 @@ function BodyWarCampBlock({dataWarCamp, setActive, setName, setActiveCreate, set
                                     setActiveCreate={setActiveCreate}
                                     setBaseId={setBaseId}
                                     setActiveScreen={setActiveScreen}
-                                    setUpdate={setUpdate}
+                                    setRemoveId={setRemoveId}
                                 />
                             );
                         }
@@ -40,7 +51,7 @@ function BodyWarCampBlock({dataWarCamp, setActive, setName, setActiveCreate, set
                                 setActiveCreate={setActiveCreate}
                                 setBaseId={setBaseId}
                                 setActiveScreen={setActiveScreen}
-                                setUpdate={setUpdate}
+                                setRemoveId={setRemoveId}
                             />
                         );
                     }

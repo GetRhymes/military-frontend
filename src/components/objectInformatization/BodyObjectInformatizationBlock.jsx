@@ -3,7 +3,7 @@ import List from "@mui/material/List";
 import ObjectInformatizationAccordion from "./ObjectInformatizationAccordion";
 import {Box} from "@mui/material";
 
-function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, setName, searchValue, setOiId, setActiveScreen}) {
+function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, setName, searchValue, setOiId, setActiveScreen, setRemoveId}) {
     return (
         <Box height="calc(100% - 60px)" overflow="auto" sx={{marginTop: "10px"}}>
             <List>
@@ -17,16 +17,14 @@ function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, 
                                     nameObjectInformatization={oi.name}
                                     dateUpdate={oi.dateUpdate}
                                     numberOfDocuments={oi.numberOfDocuments}
-                                    // cert={oi.cert}
-                                    // si={oi.si}
-                                    // scr={oi.scr}
-                                    cert={null}
-                                    si={null}
-                                    scr={null}
+                                    cert={oi.cert}
+                                    si={oi.si}
+                                    scr={oi.scr}
                                     setActive={setActive}
                                     setName={setName}
                                     setOiId={setOiId}
                                     setActiveScreen={setActiveScreen}
+                                    setRemoveId={setRemoveId}
                                 />
                             );
                         }
@@ -45,6 +43,7 @@ function BodyObjectInformatizationBlock({dataObjectsInformatization, setActive, 
                                 setName={setName}
                                 setOiId={setOiId}
                                 setActiveScreen={setActiveScreen}
+                                setRemoveId={setRemoveId}
                             />
                         );
                     }

@@ -8,7 +8,14 @@ import HeaderBlock from "../HeaderBlock";
 import {useStateIfMounted} from "use-state-if-mounted";
 import PopupLoading from "../popup/PopupLoading";
 
-function ListWarCamp({dataWarCamp, setLoading, setUpdate}) {
+function ListWarCamp(
+    {
+        dataWarCamp,
+        setLoading,
+        setBaseId,
+        setUpdateWarCamp
+    }
+) {
 
     const [active, setActive] = useState(false)
 
@@ -16,11 +23,13 @@ function ListWarCamp({dataWarCamp, setLoading, setUpdate}) {
 
     const [name, setName] = useState("")
 
-    const [baseId, setBaseId] = useState("")
+    const [baseIdAny, setBaseIdAny] = useState("")
 
     const [activeScreen, setActiveScreen] = useState(false)
 
     const [searchValue, setSearchValue] = useStateIfMounted(null)
+
+    const [removeId, setRemoveId] = useStateIfMounted(null)
 
     function handleSearchValue(event) {
         const value = event.target.value
@@ -35,13 +44,28 @@ function ListWarCamp({dataWarCamp, setLoading, setUpdate}) {
                 setActive={setActiveRemove}
                 setName={setName}
                 setActiveCreate={setActive}
-                setBaseId={setBaseId}
+                setBaseId={setBaseIdAny}
                 searchValue={searchValue}
                 setActiveScreen={setActiveScreen}
-                setUpdate={setUpdate}
+                setRemoveId={setRemoveId}
             />
-            <PopupCreateWarCamp active={active} setActive={setActive} id={baseId} setBaseId={setBaseId} setLoading={setLoading} setUpdate={setUpdate}/>
-            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} id={baseId} isOI={false} setUpdate={setUpdate}/>
+            <PopupCreateWarCamp
+                active={active}
+                setActive={setActive}
+                id={baseIdAny}
+                setBaseId={setBaseIdAny}
+                setLoading={setLoading}
+                setUpdate={setUpdateWarCamp}
+            />
+            <PopupRemove
+                active={activeRemove}
+                setActive={setActiveRemove}
+                name={name}
+                setLoading={setLoading}
+                isOI={false}
+                setUpdate={setUpdateWarCamp}
+                removeId={removeId}
+            />
             <PopupLoading active={activeScreen}/>
         </Box>
     );

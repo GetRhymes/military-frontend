@@ -67,7 +67,7 @@ export const URL_createSI = BASE_SI + '/create' //check backend layer //POST
 export const URL_removeSI = BASE_SI + '/delete' //POST { id //!!!object_inf ID!!! }
 
 //URL SpecialCheckResult
-export const BASE_SCR = API_ROOT + API_PREFIX + '/spec-investigation'
+export const BASE_SCR = API_ROOT + API_PREFIX + '/spec-check'
 export const URL_createSCR = BASE_SCR + '/create' //check backend layer //POST
 /*
     const data = {

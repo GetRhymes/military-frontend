@@ -5,7 +5,17 @@ import '../../css/InfoPage.css'
 import axios from "axios";
 import {URL_deleteOI, URL_deleteWarCampById} from "../../api/Api";
 
-function PopupRemove({active, setActive, name, setLoading, id, isOI, setUpdate}) {
+function PopupRemove(
+    {
+        active,
+        setActive,
+        name,
+        setLoading,
+        isOI,
+        setUpdate,
+        removeId
+    }
+) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -17,7 +27,7 @@ function PopupRemove({active, setActive, name, setLoading, id, isOI, setUpdate})
                        <p className="popup__message">Вы точно хотите удалить: "{name}"?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={() => deleteWarCampById(setLoading, id, isOI, setUpdate)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={() => deleteWarCampById(setLoading, isOI, setUpdate, removeId)}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -28,10 +38,10 @@ function PopupRemove({active, setActive, name, setLoading, id, isOI, setUpdate})
     );
 }
 
-async function deleteWarCampById(setLoading, id, isOI, setUpdate) {
+async function deleteWarCampById(setLoading, isOI, setUpdate, removeId) {
     setLoading(true)
     setUpdate(true)
-    await axios.post(isOI ? URL_deleteOI : URL_deleteWarCampById, { id })
+    await axios.post(isOI ? URL_deleteOI : URL_deleteWarCampById, { id: removeId })
     setLoading(false)
     setUpdate(false)
 }

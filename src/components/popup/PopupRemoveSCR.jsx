@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import {URL_removeSCR} from "../../api/Api";
 
-function PopupRemoveSCR({active, setActive, number, setLoading, id}) {
+function PopupRemoveSCR({active, setActive, number, setLoading, id, setUpdate}) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -15,7 +15,10 @@ function PopupRemoveSCR({active, setActive, number, setLoading, id}) {
                         <p className="popup__message">Вы точно хотите удалить заключение специальной проверки №{number}?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={ () => removeSCR(setLoading, id)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={ () => {
+                            removeSCR(setLoading, id, setUpdate)
+                            setActive(false)
+                        }}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -26,10 +29,12 @@ function PopupRemoveSCR({active, setActive, number, setLoading, id}) {
     );
 }
 
-async function removeSCR(setLoading, id) {
+async function removeSCR(setLoading, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     await axios.post(URL_removeSCR, { id })
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupRemoveSCR;

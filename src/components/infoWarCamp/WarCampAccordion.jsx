@@ -22,6 +22,7 @@ function WarCampAccordion(
         setActiveCreate,
         setBaseId,
         setActiveScreen,
+        setRemoveId
     }
 ) {
     return (
@@ -41,6 +42,7 @@ function WarCampAccordion(
                 setActiveCreate={setActiveCreate}
                 setBaseId={setBaseId}
                 setActiveScreen={setActiveScreen}
+                setRemoveId={setRemoveId}
             />
         </Accordion>
     );
@@ -88,7 +90,8 @@ function WarCampAccordionDetails(
         setActiveCreate,
         id,
         setBaseId,
-        setActiveScreen
+        setActiveScreen,
+        setRemoveId
     }
 ) {
     return (
@@ -110,6 +113,7 @@ function WarCampAccordionDetails(
                             <SystemUpdateAltIcon fontSize="medium"/>
                         </Button>
                         <Button onClick={() => {
+                            setRemoveId(id)
                             setName(nameWarCamp)
                             setBaseId(id)
                             setActive(true)

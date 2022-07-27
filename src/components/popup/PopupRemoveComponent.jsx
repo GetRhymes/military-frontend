@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import {URL_removeComponent} from "../../api/Api";
 
-function PopupRemoveComponent({active, setActive, name, series, id, setLoading}) {
+function PopupRemoveComponent({active, setActive, name, series, id, setLoading, setUpdate}) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -15,7 +15,10 @@ function PopupRemoveComponent({active, setActive, name, series, id, setLoading})
                         <p className="popup__message">Вы точно хотите удалить {name} ({series})?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={() => removeComponent(setLoading, id)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={() => {
+                            removeComponent(setLoading, id, setUpdate)
+                            setActive(false)
+                        }}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -26,10 +29,12 @@ function PopupRemoveComponent({active, setActive, name, series, id, setLoading})
     );
 }
 
-async function removeComponent(setLoading, id) {
+async function removeComponent(setLoading, id, setUpdate) {
     setLoading(true)
-    await axios.post(URL_removeComponent, id)
+    setUpdate(true)
+    await axios.post(URL_removeComponent, { id })
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupRemoveComponent;

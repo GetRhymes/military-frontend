@@ -27,7 +27,7 @@ import {URL_getDataComponentById, URL_getDataDocumentById, URL_getDataOIById} fr
 
 function InfoOiPage({oiId}) {
 
-    const [oi, setOi] = useStateIfMounted({})
+    const [oi, setOi] = useStateIfMounted(null)
 
     const [idDoc, setIdDoc] = useStateIfMounted("")
 
@@ -81,6 +81,8 @@ function InfoOiPage({oiId}) {
 
     const [dataComponent, setDataComponent] = useState([])
 
+    const [update, setUpdate] = useState(false)
+
     useEffect(() => {
         if (oiId === null) {
             oiId = localStorage.getItem('oiid')
@@ -88,18 +90,20 @@ function InfoOiPage({oiId}) {
         fetchDataOI(setLoading, oiId, setOi)
         fetchDataDocument(setLoadingDataDocument, oiId, setDataDocument)
         fetchDataComponent(setLoadingDataComponent, oiId, setDataComponent)
-    }, [])
+    }, [update])
 
-    let isLoading = loading || loadingDataDocument || loadingDataComponent || oi === {}
+    let isLoading = loading || loadingDataDocument || loadingDataComponent || oi === null
+
+
 
     return (
         isLoading ?
             <LoadingScreen/>
             :
             <div className="main__container__oi__info">
-                <HeaderInfoOIBlock nameOI={oi.name} setActiveHeaderPopup={setActiveHeaderPopup} setNameOI={setNameOI}/>
+                <HeaderInfoOIBlock nameOI={oi.name} setActiveHeaderPopup={setActiveHeaderPopup} setNameOI={setNameOI} warCampName={oi.warCampName} warCampNumber={oi.warCampNumber} update={oi.update}/>
                 {
-                    oi.cert !== null ?
+                    oi.cert.numberCert !== null ?
                         <CertOIBlock
                             cert={oi.cert}
                             setActive={setActiveCert}
@@ -110,7 +114,7 @@ function InfoOiPage({oiId}) {
                         <CertEmptyBlock setActive={setActiveCert}/>
                 }
                 {
-                    oi.si !== null ?
+                    oi.si.numberDoc !== null ?
                         <SIOIBlock
                             si={oi.si}
                             setActive={setActiveS}
@@ -119,10 +123,10 @@ function InfoOiPage({oiId}) {
                             setSiNumber={setSiNumber}
                         />
                         :
-                        <SiEmptyBlock setActive={setActiveS}/>
+                        <SiEmptyBlock setActive={setActiveS} setIsSI={setIsSI}/>
                 }
                 {
-                    oi.scr !== null ?
+                    oi.scr.numberDoc !== null ?
                         <SCROIBlock
                             scr={oi.scr}
                             setActive={setActiveS}
@@ -131,7 +135,7 @@ function InfoOiPage({oiId}) {
                             setSCRNumber={setSCRNumber}
                         />
                         :
-                        <SCREmptyBlock setActive={setActiveS}/>
+                        <SCREmptyBlock setActive={setActiveS} setIsSI={setIsSI}/>
                 }
 
                 <ComponentsIoBlock
@@ -154,18 +158,19 @@ function InfoOiPage({oiId}) {
                     active={activeHeaderPopup}
                     setActive={setActiveHeaderPopup}
                     oldName={nameOI}
-                    setLoading={null}
+                    setLoading={setLoading}
                     id={oi.id}
+                    setUpdate={setUpdate}
                 />
-                <PopupUpdateCert active={activeCert} setActive={setActiveCert} id={oi.id} setLoading={setLoading}/>
-                <PopupUpdateS active={activeS} setActive={setActiveS} isSI={isSI} setLoading={setLoading} id={oi.id}/>
-                <PopupCreateComponent active={activeComponent} setActive={setActiveComponent} setLoading={setLoading} id={oi.id}/>
-                <PopupCreateDocument active={activeDocument} setActive={setActiveDocument} setLoading={setLoading} id={oi.id}/>
-                <PopupRemoveCert active={removeCert} setActive={setRemoveCert} number={certNumber} id={oi.id} setLoading={setLoading}/>
-                <PopupRemoveSI active={removeSI} setActive={setRemoveSI} number={siNumber} setLoading={setLoading} id={oi.id}/>
-                <PopupRemoveSCR active={removeSCR} setActive={setRemoveSCR} number={scrNumber} setLoading={setLoading} id={oi.id}/>
-                <PopupRemoveComponent active={removeComponent} setActive={setRemoveComponent} name={componentName} series={componentSeries} setLoading={setLoading} id={idComp}/>
-                <PopupRemoveDocument active={removeDocument} setActive={setRemoveDocument} name={documentName} numReg={documentNumReg} setLoading={setLoading} id={idDoc}/>
+                <PopupUpdateCert active={activeCert} setActive={setActiveCert} id={oi.id} setLoading={setLoading} setUpdate={setUpdate}/>
+                <PopupUpdateS active={activeS} setActive={setActiveS} isSI={isSI} setLoading={setLoading} id={oi.id} setUpdate={setUpdate}/>
+                <PopupCreateComponent active={activeComponent} setActive={setActiveComponent} setLoading={setLoading} id={oi.id} setUpdate={setUpdate}/>
+                <PopupCreateDocument active={activeDocument} setActive={setActiveDocument} setLoading={setLoading} id={oi.id} setUpdate={setUpdate}/>
+                <PopupRemoveCert active={removeCert} setActive={setRemoveCert} number={certNumber} id={oi.id} setLoading={setLoading} setUpdate={setUpdate}/>
+                <PopupRemoveSI active={removeSI} setActive={setRemoveSI} number={siNumber} setLoading={setLoading} id={oi.id} setUpdate={setUpdate}/>
+                <PopupRemoveSCR active={removeSCR} setActive={setRemoveSCR} number={scrNumber} setLoading={setLoading} id={oi.id} setUpdate={setUpdate}/>
+                <PopupRemoveComponent active={removeComponent} setActive={setRemoveComponent} name={componentName} series={componentSeries} setLoading={setLoading} id={idComp} setUpdate={setUpdate}/>
+                <PopupRemoveDocument active={removeDocument} setActive={setRemoveDocument} name={documentName} numReg={documentNumReg} setLoading={setLoading} id={idDoc} setUpdate={setUpdate}/>
             </div>
     );
 }
@@ -175,7 +180,6 @@ async function fetchDataOI(setLoading, oiId, setOi) {
     const data = { id : oiId }
     const response = await axios.post(URL_getDataOIById, data)
     setOi(response.data)
-    // await setOi(dataObjectInformatizationJS.find((oi) => oi.id === oiId))
     setLoading(false)
 }
 
@@ -184,7 +188,6 @@ async function fetchDataComponent(setLoading, oiId, setDataComponent) {
     const data = { id : oiId }
     const response = await axios.post(URL_getDataComponentById, data)
     setDataComponent(response.data)
-    // await setDataComponent(dataComponentsJS)
     setLoading(false)
 }
 

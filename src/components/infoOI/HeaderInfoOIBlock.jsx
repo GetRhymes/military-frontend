@@ -5,7 +5,7 @@ import LabelInBlock from "./LabelInBlock";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function HeaderInfoOIBlock({nameOI, setActiveHeaderPopup, setNameOI}) {
+function HeaderInfoOIBlock({nameOI, setActiveHeaderPopup, setNameOI, warCampName, warCampNumber, update}) {
 
     return (
         <div className="header__card background__card">
@@ -21,9 +21,9 @@ function HeaderInfoOIBlock({nameOI, setActiveHeaderPopup, setNameOI}) {
                 </ButtonGroup>
             </Box>
             <Divider/>
-            <FilterRowInfo nameRow="Дата обновления:" valueRow="2020-12-13" isOI={false} afterDivider={true}/>
-            <FilterRowInfo nameRow="Название В/Ч:" valueRow="Военная часть №1" isOI={false}/>
-            <FilterRowInfo nameRow="Номер В/Ч:" valueRow="75752" isOI={false}/>
+            <FilterRowInfo nameRow="Дата обновления:" valueRow={update} isOI={false} afterDivider={true}/>
+            <FilterRowInfo nameRow="Название В/Ч:" valueRow={warCampName} isOI={false}/>
+            <FilterRowInfo nameRow="Номер В/Ч:" valueRow={warCampNumber} isOI={false}/>
         </div>
     );
 }

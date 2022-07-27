@@ -5,7 +5,7 @@ import PopupButton from "./PopupButton";
 import axios from "axios";
 import {URL_createComponent} from "../../api/Api";
 
-function PopupCreateComponent({active, setActive, setLoading, id}) {
+function PopupCreateComponent({active, setActive, setLoading, id, setUpdate}) {
 
     const [nameDocument, setNameDocument] = useStateIfMounted("")
 
@@ -48,7 +48,7 @@ function PopupCreateComponent({active, setActive, setLoading, id}) {
                     <div className="popup__buttons">
                         <PopupButton text="Создать" action={() => {
                             if (nameDocument !== "" && series !== "") {
-                                createComponent(setLoading, nameDocument, series, id)
+                                createComponent(setLoading, nameDocument, series, id, setUpdate)
                                 setActive(false)
                             }
                         }}/>
@@ -63,8 +63,9 @@ function PopupCreateComponent({active, setActive, setLoading, id}) {
     );
 }
 
-async function createComponent(setLoading, nameDocument, series, id) {
+async function createComponent(setLoading, nameDocument, series, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     const data = {
         id,
         nameDocument,
@@ -72,6 +73,7 @@ async function createComponent(setLoading, nameDocument, series, id) {
     }
     await axios.post(URL_createComponent, data)
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupCreateComponent;

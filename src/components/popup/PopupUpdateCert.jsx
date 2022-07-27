@@ -8,7 +8,7 @@ import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import axios from "axios";
 import {URL_createCert} from "../../api/Api";
 
-function PopupUpdateCert({active, setActive, id, setLoading}) {
+function PopupUpdateCert({active, setActive, id, setLoading, setUpdate}) {
 
     const [numberCert, setNumberCert] = useStateIfMounted("")
 
@@ -106,7 +106,8 @@ function PopupUpdateCert({active, setActive, id, setLoading}) {
                     <div className="popup__buttons">
                         <PopupButton text="Создать" action={() => {
                             if (id !== undefined && id !== null && id !== '') {
-                                createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id)
+                                createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id, setUpdate)
+                                setActive(false)
                             }
                         }}/>
                         <PopupButton text="Закрыть" action={() => {
@@ -120,8 +121,9 @@ function PopupUpdateCert({active, setActive, id, setLoading}) {
     );
 }
 
-async function createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id) {
+async function createCert(setLoading, numberCert, owner, category, dateCreateCert, dateFinishCert, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     const date = {
         id,
         numberCert,
@@ -132,6 +134,7 @@ async function createCert(setLoading, numberCert, owner, category, dateCreateCer
     }
     await axios.post(URL_createCert, date)
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupUpdateCert;

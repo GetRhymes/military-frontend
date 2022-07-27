@@ -8,7 +8,7 @@ import {useStateIfMounted} from "use-state-if-mounted";
 import axios from "axios";
 import {URL_createDocument} from "../../api/Api";
 
-function PopupCreateDocument({active, setActive, setLoading, id}) {
+function PopupCreateDocument({active, setActive, setLoading, id, setUpdate}) {
 
     const [nameDocument, setNameDocument] = useStateIfMounted("")
 
@@ -66,7 +66,7 @@ function PopupCreateDocument({active, setActive, setLoading, id}) {
                     <div className="popup__buttons">
                         <PopupButton text="Создать" action={() => {
                             if (nameDocument !== "" && regNum !== "" && date !== "") {
-                                createDocument(setLoading, nameDocument, regNum, date, id)
+                                createDocument(setLoading, nameDocument, regNum, date, id, setUpdate)
                                 setActive(false)
                             }
                         }}/>
@@ -81,8 +81,9 @@ function PopupCreateDocument({active, setActive, setLoading, id}) {
     );
 }
 
-async function createDocument(setLoading, nameDocument, regNum, date, id) {
+async function createDocument(setLoading, nameDocument, regNum, date, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     const data = {
         id,
         nameDocument,
@@ -91,6 +92,7 @@ async function createDocument(setLoading, nameDocument, regNum, date, id) {
     }
     await axios.post(URL_createDocument, data)
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupCreateDocument;

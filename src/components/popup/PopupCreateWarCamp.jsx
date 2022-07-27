@@ -10,7 +10,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function PopupCreateWarCamp({active, setActive, id, setBaseId, setLoading, setUpdate}) {
 
+    console.log(id)
+
     useEffect(() => {
+
         if (id !== "" && id !== undefined && id !== null) {
             fetchDataWarCampById(
                 id,

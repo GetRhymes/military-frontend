@@ -8,7 +8,15 @@ import PopupCreateObjectInformatization from "../popup/PopupCreateObjectInformat
 import {useStateIfMounted} from "use-state-if-mounted";
 import PopupLoading from "../popup/PopupLoading";
 
-function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoading, idMB}) {
+function ListObjectInformatization(
+    {
+        dataObjectsInformatization,
+        setOiId,
+        setLoading,
+        idMB,
+        setUpdate
+    }
+) {
 
     const [active, setActive] = useState(false)
 
@@ -19,6 +27,8 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoad
     const [name, setName] = useState("")
 
     const [searchValue, setSearchValue] = useStateIfMounted(null)
+
+    const [removeId, setRemoveId] = useStateIfMounted(null)
 
     function handleSearchValue(event) {
         const value = event.target.value
@@ -35,9 +45,23 @@ function ListObjectInformatization({dataObjectsInformatization, setOiId, setLoad
                 searchValue={searchValue}
                 setOiId={setOiId}
                 setActiveScreen={setActiveScreen}
+                setRemoveId={setRemoveId}
             />
-            <PopupCreateObjectInformatization active={active} setActive={setActive} setLoading={setLoading} idMB={idMB}/>
-            <PopupRemove active={activeRemove} setActive={setActiveRemove} name={name} setLoading={setLoading} isOI={true}/>
+            <PopupCreateObjectInformatization
+                active={active}
+                setActive={setActive}
+                setLoading={setLoading}
+                idMB={idMB}
+                setUpdate={setUpdate}
+            />
+            <PopupRemove
+                active={activeRemove}
+                setActive={setActiveRemove}
+                name={name}
+                setLoading={setLoading}
+                isOI={true}
+                setUpdate={setUpdate}
+                removeId={removeId}/>
             <PopupLoading active={activeScreen}/>
         </Box>
     );

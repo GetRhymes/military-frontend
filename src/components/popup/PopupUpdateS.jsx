@@ -8,7 +8,7 @@ import PopupButton from "./PopupButton";
 import axios from "axios";
 import {URL_createSCR, URL_createSI} from "../../api/Api";
 
-function PopupUpdateS({active, setActive, isSI, setLoading, id}) {
+function PopupUpdateS({active, setActive, isSI, setLoading, id, setUpdate}) {
     const [numberDoc, setNumberDoc] = useStateIfMounted("")
 
     const [dateCheck, setDateCheck] = useStateIfMounted("")
@@ -51,7 +51,8 @@ function PopupUpdateS({active, setActive, isSI, setLoading, id}) {
                     </div>
                     <div className="popup__buttons">
                         <PopupButton text="Создать" action={() => {
-                            createS(isSI, numberDoc, dateCheck, setLoading, id)
+                            createS(isSI, numberDoc, dateCheck, setLoading, id, setUpdate)
+                            setActive(false)
                         }}/>
                         <PopupButton text="Закрыть" action={() => {
                             clearStates()
@@ -64,8 +65,9 @@ function PopupUpdateS({active, setActive, isSI, setLoading, id}) {
     );
 }
 
-async function createS(isSI, numberDoc, dateCheck, setLoading, id) {
+async function createS(isSI, numberDoc, dateCheck, setLoading, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     const data = {
         id,
         numberDoc,
@@ -73,6 +75,7 @@ async function createS(isSI, numberDoc, dateCheck, setLoading, id) {
     }
     await axios.post(isSI ? URL_createSI : URL_createSCR, data)
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupUpdateS;

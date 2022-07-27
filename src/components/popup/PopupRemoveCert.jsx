@@ -5,7 +5,7 @@ import '../../css/InfoPage.css'
 import axios from "axios";
 import {URL_removeCert} from "../../api/Api";
 
-function PopupRemoveCert({active, setActive, number, id, setLoading}) {
+function PopupRemoveCert({active, setActive, number, id, setLoading, setUpdate}) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -17,7 +17,10 @@ function PopupRemoveCert({active, setActive, number, id, setLoading}) {
                         <p className="popup__message">Вы точно хотите удалить аттестат №{number}?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={() => removeCert(setLoading, id)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={() => {
+                            removeCert(setLoading, id, setUpdate)
+                            setActive(false)
+                        }}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -28,10 +31,12 @@ function PopupRemoveCert({active, setActive, number, id, setLoading}) {
     );
 }
 
-async function removeCert(setLoading, id) {
+async function removeCert(setLoading, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     await axios.post(URL_removeCert, { id })
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupRemoveCert;

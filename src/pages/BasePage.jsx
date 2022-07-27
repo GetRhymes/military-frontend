@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import ListWarCamp from "../components/infoWarCamp/ListWarCamp";
-import dataWarCampJS from "../data/dataWarCamp";
 import LoadingScreen from "../components/LoadingScreen";
 import axios from "axios";
 import {URL_getDataWarCamp} from "../api/Api";
 
-function BasePage() {
+function BasePage({setBaseId}) {
 
     const [dataWarCamp, setDataWarCamp] = useState([])
 
     const [loading, setLoading] = useState(false)
 
-    const [update, setUpdate] = useState(false)
+    const [update, setUpdateWarCamp] = useState(false)
 
     useEffect(() => {
         fetchDataWarCamp(setDataWarCamp, setLoading)
-        // setDataWarCamp(dataWarCampJS)
     }, [update])
 
     return (
@@ -23,7 +21,12 @@ function BasePage() {
             <LoadingScreen/>
             :
             <div className="background main__container__info">
-                <ListWarCamp dataWarCamp={dataWarCamp} setLoading={setLoading} setUpdate={setUpdate}/>
+                <ListWarCamp
+                    dataWarCamp={dataWarCamp}
+                    setLoading={setLoading}
+                    setBaseId={setBaseId}
+                    setUpdateWarCamp={setUpdateWarCamp}
+                />
             </div>
     );
 }

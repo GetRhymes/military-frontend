@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import {URL_removeSI} from "../../api/Api";
 
-function PopupRemoveSI({active, setActive, number, id, setLoading}) {
+function PopupRemoveSI({active, setActive, number, id, setLoading, setUpdate}) {
     return (
         <div
             className={active ? "popup active" : "popup"}
@@ -15,7 +15,10 @@ function PopupRemoveSI({active, setActive, number, id, setLoading}) {
                         <p className="popup__message">Вы точно хотите удалить акт специальной проверки №{number}?</p>
                     </div>
                     <div className="popup__buttons">
-                        <PopupButton text="Удалить" color="#B42B46FF" action={() => removeSI(setLoading, id)}/>
+                        <PopupButton text="Удалить" color="#B42B46FF" action={() => {
+                            removeSI(setLoading, id, setUpdate)
+                            setActive(false)
+                        }}/>
                         <PopupButton text="Отменить" action={() => {
                             setActive(false)
                         }}/>
@@ -26,10 +29,12 @@ function PopupRemoveSI({active, setActive, number, id, setLoading}) {
     );
 }
 
-async function removeSI(setLoading, id) {
+async function removeSI(setLoading, id, setUpdate) {
     setLoading(true)
+    setUpdate(true)
     await axios.post(URL_removeSI, { id })
     setLoading(false)
+    setUpdate(false)
 }
 
 export default PopupRemoveSI;

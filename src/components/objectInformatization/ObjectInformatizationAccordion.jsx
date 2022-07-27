@@ -21,9 +21,11 @@ function ObjectInformatizationAccordion(
         setActive,
         setName,
         setOiId,
-        setActiveScreen
+        setActiveScreen,
+        setRemoveId
     }
 ) {
+
     return (
         <Accordion
             inputprops={{position: "initial"}}
@@ -42,6 +44,7 @@ function ObjectInformatizationAccordion(
                 setName={setName}
                 setActiveScreen={setActiveScreen}
                 id={id}
+                setRemoveId={setRemoveId}
             />
         </Accordion>
     );
@@ -89,7 +92,8 @@ function ObjectInformatizationAccordionDetails(
         setActive,
         setName,
         id,
-        setActiveScreen
+        setActiveScreen,
+        setRemoveId
     }
 ) {
     return (
@@ -99,9 +103,9 @@ function ObjectInformatizationAccordionDetails(
                     <FilterRowInfo nameRow="Дата последнего изменения:" valueRow={dateUpdate} isOI={true}/>
                     <FilterRowInfo nameRow="Количество документов:" valueRow={numberOfDocuments} isOI={true}/>
                     <Divider/>
-                    <FilterRowInfo nameRow="Аттестат:" valueRow={cert !== null ? cert.numberCert : "Пусто"} afterDivider={true} isOI={true}/>
-                    <FilterRowInfo nameRow="Акт специального исследования:" valueRow={si !== null ? si.numberDoc : "Пусто"} isOI={true}/>
-                    <FilterRowInfo nameRow="Заключение специальной проверки:" valueRow={scr !== null ? scr.numberDoc : "Пусто"} isOI={true}/>
+                    <FilterRowInfo nameRow="Аттестат:" valueRow={cert.numberCert !== null ? cert.numberCert : "Пусто"} afterDivider={true} isOI={true}/>
+                    <FilterRowInfo nameRow="Акт специального исследования:" valueRow={si.numberDoc !== null ? si.numberDoc : "Пусто"} isOI={true}/>
+                    <FilterRowInfo nameRow="Заключение специальной проверки:" valueRow={scr.numberDoc !== null ? scr.numberDoc : "Пусто"} isOI={true}/>
                 </div>
                 <div className="body__accordion__button__oi">
                     <ButtonGroup orientation="horizontal" sx={{boxShadow: "unset", borderRadius: "12px"}}>
@@ -109,6 +113,7 @@ function ObjectInformatizationAccordionDetails(
                             <SystemUpdateAltIcon fontSize="medium" />
                         </Button>
                         <Button onClick={() => {
+                            setRemoveId(id)
                             setName(nameObjectInformatization)
                             setActive(true)
                         }}>
